@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Medicamos tu Vida</title>
+        <!--link rel="stylesheet" type="text/css" href="style/style.css"-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="SICEFA_registro_clientes">
+        <meta name="keywords" content="clientes SICEFA">
+        <meta name="author" content="Cabrera Pineda Andre Daniel / Juarez Velazquez Cristian Daniel">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"/>
+        <link rel="shortcut icon" href="../img/SICEFA.ico" type="image/x-icon"/>
+        <link href="../style/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    
+    <body>
+
+        <div class="container-fluid">
+            <header>
+                <center>
+                    <img class="imglogo" width="160" height="80" src="../img/logoSinFondoMedVid.png" style="border-radius: 10px;">
+                </center>
+            </header>
+            
+            <ul class="nav justify-content-center fondonav">
+                <li class="nav-item navegacion">
+                    <a class="nav-link text-light" href="empleados.html">Empleado</a>
+                </li>
+                <li class="nav-item navegacion">
+                    <a class="nav-link text-light" href="productos.html">Producto</a>
+                </li>
+                <li class="nav-item navegacion">
+                    <a class="nav-link text-light active" style="font-weight: bold;">Clientes</a>
+                </li>
+            </ul>
+
+            <div class="row fila">
+
+                <div class="card col-lg-4 col-md-12 col-sm-12 izquierdo">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead class="table-responsive">
+                                    <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Estatus</th>
+                                    <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="client-table">
+                                <!-- Los datos de los clientes se insertarán aquí dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                        <form class="form-container" style="margin-top: 2px">
+                            <h3>Agregar Cliente</h3>
+        
+                            <input type="text" id="nombre-input" class="form-control formularios2" placeholder="Nombre completo">
+                            <input type="text" id="genero-input" class="form-control formularios2" placeholder="Género">
+                            <input type="text" id="fecha-nacimiento-input" class="form-control formularios2" placeholder="Fecha de nacimiento">
+                            <input type="text" id="rfc-input" class="form-control formularios2" placeholder="RFC">
+                            <input type="text" id="curp-input" class="form-control formularios2" placeholder="CURP">
+                            <input type="text" id="calle-input" class="form-control formularios2" placeholder="Calle">
+                            <input type="text" id="colonia-input" class="form-control formularios2" placeholder="Colonia">
+                            <input type="text" id="numero-ext-input" class="form-control formularios2" placeholder="Número Ext">
+                            <input type="text" id="codigo-postal-input" class="form-control formularios2" placeholder="Código postal">
+                            <input type="text" id="ciudad-input" class="form-control formularios2" placeholder="Ciudad">
+                            <input type="text" id="estado-input" class="form-control formularios2" placeholder="Estado">
+                            <input type="text" id="telefono-input" class="form-control formularios2" placeholder="Teléfono">
+                            <input type="text" id="email-input" class="form-control formularios2" placeholder="Email">
+                            <br>
+                            <input type="submit" value="Agregar" class="btn form-control" style="background-color: #0059b3; color: #fff; width: 75%;" onclick="addClient(event)">
+                            
+                        </form>
+                    </div>
+                </div>    
+
+                <!--div class="mid-panel">&nbsp;</div-->
+
+                <div class="card col-lg-7 col-md-12 col-sm-12 derecho">
+                    <br>
+                    <div class="card-body">
+                        <div id="client-details" class="datos">
+                        <!-- La información del cliente seleccionado se mostrará aquí -->
+                        </div>
+                        <form id="search-form" onsubmit="searchClient(event)" style="margin-top: 20px;">
+                            <input type="text" id="search-input" placeholder="Buscar por ID de cliente" class="form-control formularios2">
+                            <input type="submit" value="Buscar" class="btn form-control mandar">
+                        </form>
+                        <form id="edit-form" onsubmit="editClient(event)" style="margin: 2px;">
+                            <h3>Editar Cliente</h3>
+                            <input type="hidden" id="edit-client-id" class="form">
+                            <input type="text" id="edit-nombre-input" class="form-control formularios2" placeholder="Nombre completo">
+                            <input type="text" id="edit-genero-input" class="form-control formularios2" placeholder="Género">
+                            <input type="text" id="edit-fecha-nacimiento-input" class="form-control formularios2" placeholder="Fecha de nacimiento">
+                            <input type="text" id="edit-rfc-input" class="form-control formularios2" placeholder="RFC">
+                            <input type="text" id="edit-curp-input" class="form-control formularios2" placeholder="CURP">
+                            <input type="text" id="edit-calle-input" class="form-control formularios2" placeholder="Calle">
+                            <input type="text" id="edit-colonia-input" class="form-control formularios2" placeholder="Colonia">
+                            <input type="text" id="edit-numero-ext-input" class="form-control formularios2" placeholder="Número Ext">
+                            <input type="text" id="edit-codigo-postal-input" class="form-control formularios2" placeholder="Código postal">
+                            <input type="text" id="edit-ciudad-input" class="form-control formularios2" placeholder="Ciudad">
+                            <input type="text" id="edit-estado-input" class="form-control formularios2" placeholder="Estado">
+                            <input type="text" id="edit-telefono-input" class="form-control formularios2" placeholder="Teléfono">
+                            <input type="text" id="edit-email-input" class="form-control formularios2" placeholder="Email">
+                            <br>
+                            <input type="submit" value="Guardar" class="btn form-control  mandar">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <footer style="background-color: #f0f0f0; padding: 10px; text-align: center;">
+            <p style="font-family: Arial, sans-serif; font-size: 14px; color: #666;">
+                © 2023 SICEFA , Medicamos tu Vida S.A. | Todos los derechos reservados | Sistema desarrollado por HIVARI para Medicamos tu Vida
+            </p>
+        </footer>
+        <script src="../js/script_Clientes.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+</html>

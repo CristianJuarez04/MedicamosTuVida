@@ -1,0 +1,73 @@
+a{
+    font-family: helvetica;
+}
+h5{
+    font-family: montserrat;
+}
+
+.navbar-nav{
+    font-size: 15px;
+
+    font-weight: 300;
+}
+.navbar-light    .navbar-brand                                {
+    color: #000;
+    font-size: 25px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+.carousel {
+  position: relative;
+  z-index: 10;
+  margin-top: -40px;
+
+ 
+}
+.carousel-caption h5{
+    letter-spacing: 2px;
+    margin-top: 25px;
+    text-align: center;
+}
+.carousel-caption p{
+    width: 60%;
+    margin:auto;
+    line-height: 1.9;
+    text-align: center;
+    
+}
+.carousel {
+  position: relative;
+  z-index: 10;
+}
+
+.menu-hamburguesa {
+  position: relative;
+  z-index: 5;
+
+}
+
+.card-color {
+    background-color: #266495;
+    border-color: black;
+
+}
+
+.white-text {
+  color: white;
+  
+}
+.card-container {
+  display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+
