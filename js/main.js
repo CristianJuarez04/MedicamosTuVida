@@ -81,8 +81,6 @@ function cargarScriptProducto()
         );
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
 let moduloCliente2, moduloEmpleado2, moduloProducto2;
 
 function cargarScriptCliente2() 
