@@ -81,10 +81,6 @@ function cargarScriptProducto()
         );
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
-let moduloCliente2, moduloEmpleado2, moduloProducto2;
-
 function cargarScriptCliente2() 
 {
     fetch("clientes.html")
@@ -105,7 +101,7 @@ function cargarScriptCliente2()
                 (
                     function(controller)
                     {
-                        moduloCliente2 = controller;
+                        moduloCliente = controller;
                     }
                 );
             }
@@ -132,7 +128,7 @@ function cargarScriptEmpleado2()
                 (
                     function(controller)
                     {
-                        moduloEmpleado2 = controller;
+                        moduloEmpleado = controller;
                     }
                 );
             }
@@ -159,7 +155,7 @@ function cargarScriptProducto2()
                 (
                     function(controller)
                     {
-                        moduloProducto2 = controller;
+                        moduloProducto = controller;
                     }
                 );
             }
