@@ -99,7 +99,7 @@ function cargarScriptCliente2()
         (
             function(html)
             {
-                document.getElementById("cargarCuerpo").innerHTML = html;
+                document.getElementById("cargarCuerpo2").innerHTML = html;
                 import("../js/script_Clientes.js")
                 .then
                 (
@@ -126,7 +126,7 @@ function cargarScriptEmpleado2()
         (
             function(html)
             {
-                document.getElementById("cargarCuerpo").innerHTML = html;
+                document.getElementById("cargarCuerpo2").innerHTML = html;
                 import("../js/script_Empleados.js")
                 .then
                 (
@@ -153,7 +153,7 @@ function cargarScriptProducto2()
         (
             function(html)
             {
-                document.getElementById("cargarCuerpo").innerHTML = html;
+                document.getElementById("cargarCuerpo2").innerHTML = html;
                 import("../js/script_Productos.js")
                 .then
                 (
