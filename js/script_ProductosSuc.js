@@ -95,7 +95,7 @@ export function loadProducto(event) {
         <p>Precio: $${productoEncontrado.precioVenta}</p>
         <p>Existencias: ${productoEncontrado.unidades}</p>
         <p>Imagen:</p>
-        <img src="${productoEncontrado.imagen}" alt="Imagen de ${productoEncontrado.nombre}" width="200">
+        <img src="${productoEncontrado.imagen}" alt="Imagen de ${productoEncontrado.nombre_producto}" width="200">
     `;
   } else {
     let productoDetails = document.getElementById("producto-details");
