@@ -11,6 +11,19 @@ fetch("../json/productos.json")
   }
   );
 
+document.querySelector('.mandar').addEventListener('click', function (event) {
+  event.preventDefault();
+  let nombre = document.querySelector('#nombre-input').value;
+  let precio = document.querySelector('#precio-input').value;
+  let existencias = document.querySelector('#existencias-input').value;
+  let imagen = document.querySelector('#imagen-input').value;
+  if (nombre && precio && existencias && imagen) {
+    agregarProducto();
+  } else {
+    alert('Por favor, llene todos los campos antes de enviar el formulario.');
+  }
+});
+
 // Función para agregar un producto
 export function agregarProducto() {
   let var_nombre_producto,
@@ -95,7 +108,7 @@ export function loadProducto(event) {
         <p>Precio: $${productoEncontrado.precioVenta}</p>
         <p>Existencias: ${productoEncontrado.unidades}</p>
         <p>Imagen:</p>
-        <img src="${productoEncontrado.imagen}" alt="Imagen de ${productoEncontrado.nombre}" width="200">
+        <img src="${productoEncontrado.foto_producto}" alt="Imagen de ${productoEncontrado.nombre_producto}" width="200">
     `;
   } else {
     let productoDetails = document.getElementById("producto-details");

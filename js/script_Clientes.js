@@ -13,8 +13,30 @@ fetch("../json/clientes.json")
     }
     );
 
-export function addClient() 
-{
+document.querySelector('.btn').addEventListener('click', function (event) {
+    event.preventDefault();
+    let nombre = document.querySelector('#nombre-input').value;
+    let genero = document.querySelector('#genero-input').value;
+    let fechaNacimiento = document.querySelector('#fecha-nacimiento-input').value;
+    let rfc = document.querySelector('#rfc-input').value;
+    let curp = document.querySelector('#curp-input').value;
+    let calle = document.querySelector('#calle-input').value;
+    let colonia = document.querySelector('#colonia-input').value;
+    let numeroExt = document.querySelector('#numero-ext-input').value;
+    let codigoPostal = document.querySelector('#codigo-postal-input').value;
+    let ciudad = document.querySelector('#ciudad-input').value;
+    let estado = document.querySelector('#estado-input').value;
+    let telefono = document.querySelector('#telefono-input').value;
+    let email = document.querySelector('#email-input').value;
+
+    if (nombre && genero && fechaNacimiento && rfc && curp && calle && colonia && numeroExt && codigoPostal && ciudad && estado && telefono && email) {
+        moduloCliente.addClient();
+    } else {
+        alert('Por favor, llene todos los campos antes de enviar el formulario.');
+    }
+});
+
+export function addClient() {
     let var_nombre,
         var_genero,
         var_fechaNac,
@@ -81,13 +103,12 @@ export function clean() {
     document.getElementById("email-input").value = "";
 }
 
-export function loadTabla() 
-{
+export function loadTabla() {
     let body = "";
 
     clients.forEach(function (cliente) {
         let register =
-        `<tr>
+            `<tr>
             <td> ${cliente.id}</td>
             <td> ${cliente.nombre}</td> 
             <td> ${cliente.email}</td>
@@ -106,8 +127,7 @@ export function loadTabla()
     document.getElementById("client-table").innerHTML = body;
 }
 
-export function editClient() 
-{
+export function editClient() {
     let clientIdInput = document.getElementById("edit-client-id");
     let clientId = parseInt(clientIdInput.value);
     let nombreInput = document.getElementById("edit-nombre-input");
@@ -152,8 +172,7 @@ export function editClient()
     clearEditForm();
 }
 
-export function showEditForm(clientId) 
-{
+export function showEditForm(clientId) {
     let client = clients.find(client => client.id === clientId);
     if (client) {
         let clientIdInput = document.getElementById("edit-client-id");
@@ -191,8 +210,7 @@ export function showEditForm(clientId)
     clean();
 }
 
-export function deleteClient(clientId) 
-{
+export function deleteClient(clientId) {
     let client = clients.find(client => client.id === clientId);
 
     if (client) {
@@ -203,8 +221,7 @@ export function deleteClient(clientId)
     loadTabla();
 }
 
-export function clearEditForm() 
-{
+export function clearEditForm() {
     let clientIdInput = document.getElementById("edit-client-id");
     let nombreInput = document.getElementById("edit-nombre-input");
     let generoInput = document.getElementById("edit-genero-input");
@@ -236,18 +253,17 @@ export function clearEditForm()
     emailInput.value = "";
 }
 
-export function searchClient(event) 
-{
+export function searchClient(event) {
     event.preventDefault();
-  
+
     let searchInput = document.getElementById("search-input");
     let clientId = parseInt(searchInput.value);
-  
+
     let foundClient = clients.find(client => client.id === clientId);
-  
+
     if (foundClient) {
-      let clientDetails = document.getElementById("client-details");
-      clientDetails.innerHTML = `
+        let clientDetails = document.getElementById("client-details");
+        clientDetails.innerHTML = `
         <h3>Cliente Encontrado</h3>
         <p>ID: ${foundClient.id}</p>
         <p>Nombre: ${foundClient.nombre}</p>
@@ -268,8 +284,8 @@ export function searchClient(event)
         <img src="${foundClient.imagen}" alt="Imagen de ${foundClient.nombre}" width="200">
       `;
     } else {
-      let clientDetails = document.getElementById("client-details");
-      clientDetails.innerHTML = `
+        let clientDetails = document.getElementById("client-details");
+        clientDetails.innerHTML = `
         <p>No se encontró ningún cliente con el ID proporcionado.</p>
       `;
     }
