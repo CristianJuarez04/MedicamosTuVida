@@ -1,8 +1,7 @@
 <div class="row fila">
-
-    <div class="card col-lg-4 col-md-12 col-sm-12 izquierdo">
+    <div class="card col-lg-5 col-md-12 col-sm-12 izquierdo">
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" style="margin-bottom: 2px; max-height: 20em; min-height: 20em;">
                 <table class="table table-sm">
                     <thead class="table-responsive">
                         <tr>
@@ -17,77 +16,70 @@
                         <!-- Los datos de los empleados se insertarán aquí dinámicamente -->
                     </tbody>
                 </table>
-
-                <form class="form-container" style="margin-top: 2px">
-                    <h3>Agregar Empleado</h3>
-                    <input type="text" id="nombre-input" class="form-control formularios2" placeholder="Nombre">
-                    <input type="text" id="genero-input" class="form-control formularios2" placeholder="Género">
-                    <input type="text" id="fecha-nacimiento-input" class="form-control formularios2"
-                        placeholder="Fecha de nacimiento">
-                    <input type="text" id="rfc-input" class="form-control formularios2" placeholder="RFC">
-                    <input type="text" id="curp-input" class="form-control formularios2" placeholder="CURP">
-                    <input type="text" id="calle-input" class="form-control formularios2" placeholder="Calle">
-                    <input type="text" id="colonia-input" class="form-control formularios2" placeholder="Colonia">
-                    <input type="text" id="numero-ext-input" class="form-control formularios2" placeholder="Número Ext">
-                    <input type="text" id="codigo-postal-input" class="form-control formularios2"
-                        placeholder="Código postal">
-                    <input type="text" id="ciudad-input" class="form-control formularios2" placeholder="Ciudad">
-                    <input type="text" id="estado-input" class="form-control formularios2" placeholder="Estado">
-                    <input type="text" id="telefono-input" class="form-control formularios2" placeholder="Teléfono">
-                    <input type="text" id="email-input" class="form-control formularios2" placeholder="Email">
-                    <input type="text" id="puesto-input" class="form-control formularios2" placeholder="Puesto">
-                    <input type="text" id="salario-input" class="form-control formularios2" placeholder="Salario">
-                    <input type="text" id="codigo-input" class="form-control formularios2" placeholder="Código">
-                    <input type="text" id="fecha-ingreso-input" class="form-control formularios2"
-                        placeholder="Fecha de ingreso">
-                    <input type="file" class="formularios1" id="imagen-input">
-                    <input type="submit" class="btn form-control mandar" value="Agregar"
-                        onclick="agregarEmpleado(event)">
-                </form>
             </div>
+
+            <h3>Agregar Empleado</h3>
+            <input type="text" id="nombre-input" class="form-control formularios2" placeholder="Nombre">
+            <input type="text" id="genero-input" class="form-control formularios2" placeholder="Género">
+            <input type="text" id="fecha-nacimiento-input" class="form-control formularios2"
+                placeholder="Fecha de nacimiento">
+            <input type="text" id="rfc-input" class="form-control formularios2" placeholder="RFC">
+            <input type="text" id="curp-input" class="form-control formularios2" placeholder="CURP">
+            <input type="text" id="calle-input" class="form-control formularios2" placeholder="Calle">
+            <input type="text" id="colonia-input" class="form-control formularios2" placeholder="Colonia">
+            <input type="text" id="numero-ext-input" class="form-control formularios2" placeholder="Número Ext">
+            <input type="text" id="codigo-postal-input" class="form-control formularios2" placeholder="Código postal">
+            <input type="text" id="ciudad-input" class="form-control formularios2" placeholder="Ciudad">
+            <input type="text" id="estado-input" class="form-control formularios2" placeholder="Estado">
+            <input type="text" id="telefono-input" class="form-control formularios2" placeholder="Teléfono">
+            <input type="text" id="email-input" class="form-control formularios2" placeholder="Email">
+            <input type="text" id="puesto-input" class="form-control formularios2" placeholder="Puesto">
+            <input type="text" id="salario-input" class="form-control formularios2" placeholder="Salario">
+            <input type="text" id="codigo-input" class="form-control formularios2" placeholder="Código">
+            <input type="text" id="fecha-ingreso-input" class="form-control formularios2"
+                placeholder="Fecha de ingreso">
+            <input type="file" class="formularios1" id="imagen-input">
+            <input type="submit" class="btn form-control mandar" value="Agregar"
+                onclick="moduloEmpleado.agregarEmpleado()">
         </div>
     </div>
 
-    <div class="card col-lg-7 col-md-12 col-sm-12 derecho">
+    <div class="card col-lg-6 col-md-12 col-sm-12 derecho">
         <div class="card-body">
             <br>
-            <div id="detalles-empleado" class="datos">
+            <div id="detalles-empleado" class="datos table-responsive" style="margin-bottom: 20px; max-height: 12em; min-height: 12em;">
                 <!-- La información del empleado seleccionado se mostrará aquí -->
             </div>
-            <form id="busqueda-form" onsubmit="buscarEmpleado(event)">
-                <input type="text" id="busqueda-input" class="form-control formularios1" style="margin-top: 20px"
-                    placeholder="Buscar por ID de empleado">
-                <input type="submit" class="btn mandar" value="Buscar">
-            </form>
-            <form id="edit-form" style="margin-top: 2px" onsubmit="editarEmpleado(event)">
-                <h3>Editar Empleado</h3>
-                <input type="hidden" id="edit-id-empleado">
-                <input type="text" class="form-control formularios1" id="edit-nombre-input"
-                    placeholder="Nombre completo">
-                <input type="text" class="form-control formularios1" id="edit-genero-input" placeholder="Género">
-                <input type="text" class="form-control formularios1" id="edit-fecha-nacimiento-input"
-                    placeholder="Fecha de nacimiento">
-                <input type="text" class="form-control formularios1" id="edit-rfc-input" placeholder="RFC">
-                <input type="text" class="form-control formularios1" id="edit-curp-input" placeholder="CURP">
-                <input type="text" class="form-control formularios1" id="edit-calle-input" placeholder="Calle">
-                <input type="text" class="form-control formularios1" id="edit-colonia-input" placeholder="Colonia">
-                <input type="text" class="form-control formularios1" id="edit-numero-ext-input"
-                    placeholder="Número Ext">
-                <input type="text" class="form-control formularios1" id="edit-codigo-postal-input"
-                    placeholder="Código postal">
-                <input type="text" class="form-control formularios1" id="edit-ciudad-input" placeholder="Ciudad">
-                <input type="text" class="form-control formularios1" id="edit-estado-input" placeholder="Estado">
-                <input type="text" class="form-control formularios1" id="edit-telefono-input" placeholder="Teléfono">
-                <input type="text" class="form-control formularios1" id="edit-email-input" placeholder="Email">
-                <input type="text" class="form-control formularios1" id="edit-puesto-input" placeholder="Puesto">
-                <input type="text" class="form-control formularios1" id="edit-salario-input" placeholder="Salario">
-                <input type="text" class="form-control formularios1" id="edit-codigo-input" placeholder="Código">
-                <input type="text" class="form-control formularios1" id="edit-fecha-ingreso-input"
-                    placeholder="Fecha de ingreso">
 
-                <input type="submit" class="form-control mandar formularios1" value="Guardar">
-                <button type="button" class="btn enviar" onclick="eliminarEmpleado()">Eliminar</button>
-            </form>
+            <input type="text" id="busqueda-input" class="form-control formularios1" style="margin-top: 20px"
+                placeholder="Buscar por ID de empleado">
+            <input type="submit" class="btn mandar" value="Buscar" onclick="moduloEmpleado.buscarEmpleado(event)">
+
+            <h3>Editar Empleado</h3>
+            <input type="hidden" id="edit-id-empleado">
+            <input type="text" class="form-control formularios1" id="edit-nombre-input" placeholder="Nombre completo">
+            <input type="text" class="form-control formularios1" id="edit-genero-input" placeholder="Género">
+            <input type="text" class="form-control formularios1" id="edit-fecha-nacimiento-input"
+                placeholder="Fecha de nacimiento">
+            <input type="text" class="form-control formularios1" id="edit-rfc-input" placeholder="RFC">
+            <input type="text" class="form-control formularios1" id="edit-curp-input" placeholder="CURP">
+            <input type="text" class="form-control formularios1" id="edit-calle-input" placeholder="Calle">
+            <input type="text" class="form-control formularios1" id="edit-colonia-input" placeholder="Colonia">
+            <input type="text" class="form-control formularios1" id="edit-numero-ext-input" placeholder="Número Ext">
+            <input type="text" class="form-control formularios1" id="edit-codigo-postal-input"
+                placeholder="Código postal">
+            <input type="text" class="form-control formularios1" id="edit-ciudad-input" placeholder="Ciudad">
+            <input type="text" class="form-control formularios1" id="edit-estado-input" placeholder="Estado">
+            <input type="text" class="form-control formularios1" id="edit-telefono-input" placeholder="Teléfono">
+            <input type="text" class="form-control formularios1" id="edit-email-input" placeholder="Email">
+            <input type="text" class="form-control formularios1" id="edit-puesto-input" placeholder="Puesto">
+            <input type="text" class="form-control formularios1" id="edit-salario-input" placeholder="Salario">
+            <input type="text" class="form-control formularios1" id="edit-codigo-input" placeholder="Código">
+            <input type="text" class="form-control formularios1" id="edit-fecha-ingreso-input"
+                placeholder="Fecha de ingreso">
+
+            <input type="submit" class="form-control mandar formularios1" value="Guardar"
+                onclick="moduloEmpleado.editarEmpleado();">
         </div>
     </div>
 </div>

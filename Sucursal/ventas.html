@@ -1,0 +1,69 @@
+<div class="row fila">
+    <div class="card col-lg-15 col-md-11 col-sm-15 izquierdo">
+        <div class="card-body">
+            <div class="table-responsive" style="margin-bottom: 2px; max-height: 8em; min-height: 8em;">
+                <table class="table table-sm">
+                    <thead class="table-responsive">
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Empleado</th>
+                            <th>Productos</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table">
+                        <!-- Los datos de las ventas se insertarán aquí dinámicamente -->
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card col-lg-8 col-md-8 col-sm-12">
+                        <div class="card-body">
+                            <h3>Nueva Venta</h3>
+                            <input type="text" id="nombre-cliente" placeholder="Nombre del Cliente"
+                                class="form-control formularios1" required><br>
+                            <input type="text" id="id-empleado" placeholder="ID del Empleado"
+                                class="form-control formularios1" required><br>
+                            <input type="date" id="fecha-input" class="form-control-sm formularios1" required>
+                            <input type="time" id="hora-input" class="form-control-sm formularios1" required>
+                            <div id="productos-container">
+                                <div class="producto-row">
+                                    <input type="text" class="producto-nombre" placeholder="Nombre del Producto"
+                                        required>
+                                    <input type="number" class="producto-precio" placeholder="Precio" required>
+                                    <input type="number" class="producto-cantidad" placeholder="Cantidad" required>
+                                </div>
+                            </div>
+                            <br>
+                            <button type="button" class="btn form-control mandar"
+                                onclick="moduloVenta.agregarProductoRow()">Agregar
+                                Producto</button><br><br>
+                            <input type="submit" value="Concluir Venta" class="btn form-control mandar"
+                                onclick="moduloVenta.addVenta();">
+                        </div>
+                    </div>
+                    <div class="card col-lg-4 col-md-4 col-sm-12">
+                        <div class="card-body">
+                            <br>
+                            <div id="venta-details" class="datos table-responsive"
+                                style="margin-bottom: 20px; max-height: 5em; min-height: 5em;">
+                                <!-- La información del cliente seleccionado se mostrará aquí -->
+                            </div>
+
+                            <input type="text" id="busqueda-input" placeholder="Buscar por ID de venta"
+                                class="form-control formularios1">
+                            <input type="submit" class="btn enviar" value="Buscar" onclick="moduloVenta.buscarVenta(event)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
