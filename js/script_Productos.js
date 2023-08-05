@@ -3,6 +3,19 @@ let idProductoSeleccionado = null;
 let btnStyleEdit = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #00931b; color: #fff;";
 let btnStyleDelete = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #bf0000; color: #fff;";
 
+document.querySelector('.mandar').addEventListener('click', function (event) {
+  event.preventDefault();
+  let nombre = document.querySelector('#nombre-input').value;
+  let precio = document.querySelector('#precio-input').value;
+  let existencias = document.querySelector('#existencias-input').value;
+  let imagen = document.querySelector('#imagen-input').value;
+  if (nombre && precio && existencias && imagen) {
+    agregarProducto();
+  } else {
+    alert('Por favor, llene todos los campos antes de enviar el formulario.');
+  }
+});
+
 fetch("../json/productos.json")
   .then(response => {
     return response.json();
@@ -96,6 +109,7 @@ export function eliminarProducto(idProductoSeleccionado) {
       idProductoSeleccionado = null;
 
       // Actualizamos la tabla y los detalles del producto
+      limpiarFormularioEdicion()
       mostrarProductos();
     }
   }
@@ -168,7 +182,7 @@ export function loadProducto(event) {
         <p>Precio: $${productoEncontrado.precioVenta}</p>
         <p>Existencias: ${productoEncontrado.unidades}</p>
         <p>Imagen:</p>
-        <img src="${productoEncontrado.imagen}" alt="Imagen de ${productoEncontrado.nombre}" width="200">
+        <img src="${productoEncontrado.foto_producto}" alt="Imagen de ${productoEncontrado.nombre_producto}" width="200">
     `;
   } else {
     let productoDetails = document.getElementById("producto-details");

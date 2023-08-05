@@ -4,36 +4,64 @@ let btnStyleEdit = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-
 let btnStyleDelete = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #bf0000; color: #fff;";
 
 fetch("../json/empleados.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(function (jsondata) {
-        empleados = jsondata;
-        console.log(empleados);
-        mostrarEmpleados();
-    }
-    );
+  .then(response => {
+    return response.json();
+  })
+  .then(function (jsondata) {
+    empleados = jsondata;
+    console.log(empleados);
+    mostrarEmpleados();
+  }
+  );
+
+//Funcion para verificar que los campos del formulario agregar empleados estan llenos y proseguir con las operaciones de ser asi
+document.querySelector('.mandar').addEventListener('click', function (event) {
+  event.preventDefault();
+  let nombre = document.querySelector('#nombre-input').value;
+  let genero = document.querySelector('#genero-input').value;
+  let fechaNacimiento = document.querySelector('#fecha-nacimiento-input').value;
+  let rfc = document.querySelector('#rfc-input').value;
+  let curp = document.querySelector('#curp-input').value;
+  let calle = document.querySelector('#calle-input').value;
+  let colonia = document.querySelector('#colonia-input').value;
+  let numeroExt = document.querySelector('#numero-ext-input').value;
+  let codigoPostal = document.querySelector('#codigo-postal-input').value;
+  let ciudad = document.querySelector('#ciudad-input').value;
+  let estado = document.querySelector('#estado-input').value;
+  let telefono = document.querySelector('#telefono-input').value;
+  let email = document.querySelector('#email-input').value;
+  let puesto = document.querySelector('#puesto-input').value;
+  let salario = document.querySelector('#salario-input').value;
+  let codigo = document.querySelector('#codigo-input').value;
+  let fechaIngreso = document.querySelector('#fecha-ingreso-input').value;
+  let imagen = document.querySelector('#imagen-input').value;
+
+  if (nombre && genero && fechaNacimiento && rfc && curp && calle && colonia && numeroExt && codigoPostal && ciudad && estado && telefono && email && puesto && salario && codigo && fechaIngreso && imagen) {
+    moduloEmpleado.agregarEmpleado();
+  } else {
+    alert('Por favor, llene todos los campos antes de enviar el formulario.');
+  }
+});
 
 // Función para agregar un empleado
-export function agregarEmpleado() 
-{
-  let nombreInput, 
-  generoInput, 
-  fechaNacimientoInput, 
-  rfcInput, 
-  curpInput, 
-  calleInput, 
-  coloniaInput,          
-  numeroExtInput,        
-  codigoPostalInput,     
-  ciudadInput,          
-  estadoInput,           
-  telefonoInput,         
-  emailInput,          
-  puestoInput,           
-  salarioInput,          
-  codigoInput,           
-  fechaIngresoInput;
+export function agregarEmpleado() {
+  let nombreInput,
+    generoInput,
+    fechaNacimientoInput,
+    rfcInput,
+    curpInput,
+    calleInput,
+    coloniaInput,
+    numeroExtInput,
+    codigoPostalInput,
+    ciudadInput,
+    estadoInput,
+    telefonoInput,
+    emailInput,
+    puestoInput,
+    salarioInput,
+    codigoInput,
+    fechaIngresoInput;
 
   nombreInput = document.getElementById("nombre-input").value;
   generoInput = document.getElementById("genero-input").value;
@@ -54,25 +82,25 @@ export function agregarEmpleado()
   fechaIngresoInput = document.getElementById("fecha-ingreso-input").value;
 
   let nuevoEmpleado = {}
-      nuevoEmpleado.id = empleados.length + 1;
-      nuevoEmpleado.nombre = nombreInput;
-      nuevoEmpleado.genero = generoInput;
-      nuevoEmpleado.fechaNacimiento = fechaNacimientoInput;
-      nuevoEmpleado.rfc = rfcInput;
-      nuevoEmpleado.curp = curpInput;
-      nuevoEmpleado.calle = calleInput;
-      nuevoEmpleado.colonia = coloniaInput;
-      nuevoEmpleado.numeroExt = numeroExtInput;
-      nuevoEmpleado.codigoPostal = codigoPostalInput;
-      nuevoEmpleado.ciudad = ciudadInput;
-      nuevoEmpleado.estado = estadoInput;
-      nuevoEmpleado.telefono = telefonoInput;
-      nuevoEmpleado.email = emailInput;
-      nuevoEmpleado.puesto = puestoInput;
-      nuevoEmpleado.salario = salarioInput;
-      nuevoEmpleado.codigo = codigoInput;
-      nuevoEmpleado.fechaIngreso = fechaIngresoInput;
-      nuevoEmpleado.status = "Activo";
+  nuevoEmpleado.id = empleados.length + 1;
+  nuevoEmpleado.nombre = nombreInput;
+  nuevoEmpleado.genero = generoInput;
+  nuevoEmpleado.fechaNacimiento = fechaNacimientoInput;
+  nuevoEmpleado.rfc = rfcInput;
+  nuevoEmpleado.curp = curpInput;
+  nuevoEmpleado.calle = calleInput;
+  nuevoEmpleado.colonia = coloniaInput;
+  nuevoEmpleado.numeroExt = numeroExtInput;
+  nuevoEmpleado.codigoPostal = codigoPostalInput;
+  nuevoEmpleado.ciudad = ciudadInput;
+  nuevoEmpleado.estado = estadoInput;
+  nuevoEmpleado.telefono = telefonoInput;
+  nuevoEmpleado.email = emailInput;
+  nuevoEmpleado.puesto = puestoInput;
+  nuevoEmpleado.salario = salarioInput;
+  nuevoEmpleado.codigo = codigoInput;
+  nuevoEmpleado.fechaIngreso = fechaIngresoInput;
+  nuevoEmpleado.status = "Activo";
 
   empleados.push(nuevoEmpleado);
   mostrarEmpleados();
@@ -81,9 +109,8 @@ export function agregarEmpleado()
 // Función para mostrar los empleados en la tabla
 export function mostrarEmpleados() {
   let tablaEmpleados = "";
-  
-  empleados.forEach(function (empleado)
-  {
+
+  empleados.forEach(function (empleado) {
     let fila =
       `<tr>
       <td>${empleado.id}</td>
@@ -102,8 +129,7 @@ export function mostrarEmpleados() {
 }
 
 // Función para buscar un empleado por ID
-export function buscarEmpleado(evento) 
-{
+export function buscarEmpleado(evento) {
   evento.preventDefault();
 
   let inputBusqueda = document.getElementById("busqueda-input");
@@ -111,8 +137,7 @@ export function buscarEmpleado(evento)
 
   let empleadoEncontrado = empleados.find(empleado => empleado.id === idEmpleado);
 
-  if (empleadoEncontrado) 
-  {
+  if (empleadoEncontrado) {
     let detallesEmpleado = document.getElementById("detalles-empleado");
     detallesEmpleado.innerHTML = `
       <h3>Empleado Encontrado</h3>
@@ -144,8 +169,7 @@ export function buscarEmpleado(evento)
 }
 
 // Función para editar los datos de un empleado
-export function editarEmpleado() 
-{
+export function editarEmpleado() {
   let nombreInput = document.getElementById("edit-nombre-input");
   let generoInput = document.getElementById("edit-genero-input");
   let fechaNacimientoInput = document.getElementById("edit-fecha-nacimiento-input");
@@ -188,13 +212,12 @@ export function editarEmpleado()
 
   // Actualizar los datos del empleado en el array
   let indice = empleados.findIndex(empleado => empleado.id === idEmpleadoSeleccionado);
-  if (indice !== -1) 
-  {
+  if (indice !== -1) {
     empleados[indice] = empleadoEditado;
   }
 
-  mostrarEmpleados();
   limpiarFormularioEdicion();
+  mostrarEmpleados();
 }
 
 // Función para cambiar el status de un empleado a "inactivo"
@@ -219,8 +242,7 @@ export function eliminarEmpleado(idEmpleadoSeleccionado) {
 // Función para mostrar el formulario de edición con los datos de un empleado
 export function mostrarFormularioEdicion(idEmpleado) {
   let empleado = empleados.find(empleado => empleado.id === idEmpleado);
-  if (empleado) 
-  {
+  if (empleado) {
     idEmpleadoSeleccionado = empleado.id;
 
     let nombreInput = document.getElementById("edit-nombre-input");

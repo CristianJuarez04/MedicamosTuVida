@@ -1,6 +1,29 @@
 let ventas = [];
 let btnStyleDelete = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #bf0000; color: #fff;";
 
+document.querySelector('.mandar[type="submit"]').addEventListener('click', function(event) {
+    event.preventDefault();
+    let nombreCliente = document.querySelector('#nombre-cliente').value;
+    let idEmpleado = document.querySelector('#id-empleado').value;
+    let fecha = document.querySelector('#fecha-input').value;
+    let hora = document.querySelector('#hora-input').value;
+    let productos = document.querySelectorAll('.producto-row');
+    let productosValidos = true;
+    productos.forEach(function(producto) {
+        let nombreProducto = producto.querySelector('.producto-nombre').value;
+        let precioProducto = producto.querySelector('.producto-precio').value;
+        let cantidadProducto = producto.querySelector('.producto-cantidad').value;
+        if (!nombreProducto || !precioProducto || !cantidadProducto) {
+            productosValidos = false;
+        }
+    });
+    if (nombreCliente && idEmpleado && fecha && hora && productosValidos) {
+        moduloVenta.addVenta();
+    } else {
+        alert('Por favor, llene todos los campos antes de enviar el formulario.');
+    }
+});
+
 export function addVenta() {
     let var_idEmpleado,
         var_nombreCliente,
