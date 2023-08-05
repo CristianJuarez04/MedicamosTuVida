@@ -1,4 +1,4 @@
-let moduloCliente, moduloEmpleado, moduloProducto;
+let moduloCliente, moduloEmpleado, moduloProducto, moduloProductoSuc, moduloVenta, moduloSuc;
 
 function cargarScriptCliente() 
 {
@@ -81,61 +81,7 @@ function cargarScriptProducto()
         );
 }
 
-function cargarScriptCliente2() 
-{
-    fetch("clientes.html")
-        .then
-        (
-            function(response)
-            {
-                return response.text();
-            }
-        )
-        .then
-        (
-            function(html)
-            {
-                document.getElementById("cargarCuerpo").innerHTML = html;
-                import("../js/script_Clientes.js")
-                .then
-                (
-                    function(controller)
-                    {
-                        moduloCliente = controller;
-                    }
-                );
-            }
-        );
-}
-
-function cargarScriptEmpleado2() 
-{
-    fetch("empleados.html")
-        .then
-        (
-            function(response)
-            {
-                return response.text();
-            }
-        )
-        .then
-        (
-            function(html)
-            {
-                document.getElementById("cargarCuerpo").innerHTML = html;
-                import("../js/script_Empleados.js")
-                .then
-                (
-                    function(controller)
-                    {
-                        moduloEmpleado = controller;
-                    }
-                );
-            }
-        );
-}
-
-function cargarScriptProducto2() 
+function cargarScriptProductoSuc() 
 {
     fetch("productos.html")
         .then
@@ -150,12 +96,66 @@ function cargarScriptProducto2()
             function(html)
             {
                 document.getElementById("cargarCuerpo").innerHTML = html;
-                import("../js/script_Productos.js")
+                import("../js/script_ProductosSuc.js")
                 .then
                 (
                     function(controller)
                     {
-                        moduloProducto = controller;
+                        moduloProductoSuc = controller;
+                    }
+                );
+            }
+        );
+}
+
+function cargarScriptVenta() 
+{
+    fetch("ventas.html")
+        .then
+        (
+            function(response)
+            {
+                return response.text();
+            }
+        )
+        .then
+        (
+            function(html)
+            {
+                document.getElementById("cargarCuerpo").innerHTML = html;
+                import("../js/script_Ventas.js")
+                .then
+                (
+                    function(controller)
+                    {
+                        moduloVenta = controller;
+                    }
+                );
+            }
+        );
+}
+
+function cargarScriptSucursales() 
+{
+    fetch("sucursales.html")
+        .then
+        (
+            function(response)
+            {
+                return response.text();
+            }
+        )
+        .then
+        (
+            function(html)
+            {
+                document.getElementById("cargarCuerpo").innerHTML = html;
+                import("../js/script_Sucursales.js")
+                .then
+                (
+                    function(controller)
+                    {
+                        moduloSuc = controller;
                     }
                 );
             }

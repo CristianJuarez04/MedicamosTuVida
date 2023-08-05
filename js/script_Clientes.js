@@ -1,49 +1,21 @@
-let indexClienteSeleccionado;
 let clients = [];
-let btnStyle = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #0059b3; color: #fff;";
-
+let btnStyleEdit = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #00931b; color: #fff;";
+let btnStyleDelete = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #bf0000; color: #fff;";
 
 fetch("../json/clientes.json")
-    .then(response =>
-    {
+    .then(response => {
         return response.json();
     })
-    .then(function(jsondata)
-    {
+    .then(function (jsondata) {
         clients = jsondata;
         console.log(clients);
         loadTabla();
-    }            
+    }
     );
-  
-  
-// Función para mostrar los clientes en la tabla
-// function showClients() 
-// {
-//     let tableBody = document.getElementById("client-table");
-//     tableBody = "";
-  
-//     clients.forEach(function (client){
-//         let row = //document.createElement("tr");
-//         row = `<tr onload="js.selectCliente(${clients.indexOf(client)});">
-//             <td>${client.id}</td>
-//             <td>${client.nombre}</td>
-//             <td>${client.email}</td>
-//             <td>${client.estatus}</td>
-//             <td>
-//                 <button class="btn" style="${btnStyle}" onclick="showEditForm(${client.id})">Editar</button>' +
-//                 <button class="btn" style="${btnStyle}" onclick="deleteClient(${client.id})">Eliminar</button>' +
-//             </td></tr>`;
-//         tableBody += row;
-//     });
 
-//     console.log(tableBody);
-//     document.getElementById("client-tabl").innerHTML = tableBody;
-// }
-
-export function addCliente()
+export function addClient() 
 {
-    let var_nombre, 
+    let var_nombre,
         var_genero,
         var_fechaNac,
         var_rfc,
@@ -70,7 +42,7 @@ export function addCliente()
     var_estado = document.getElementById("estado-input").value;
     var_telefono = document.getElementById("telefono-input").value;
     var_email = document.getElementById("email-input").value;
-    
+
     let cliente = {};
     cliente.id = clients.length + 1;
     cliente.nombre = var_nombre;
@@ -93,8 +65,7 @@ export function addCliente()
     loadTabla();
 }
 
-export function clean()
-{
+export function clean() {
     document.getElementById("nombre-input").value = "";
     document.getElementById("genero-input").value = "";
     document.getElementById("fecha-nacimiento-input").value = "";
@@ -110,24 +81,24 @@ export function clean()
     document.getElementById("email-input").value = "";
 }
 
-export function loadTabla()
+export function loadTabla() 
 {
     let body = "";
 
-    clients.forEach(function (cliente)
-    {
-        let register = 
-        `<tr onclick="moduloCliente.selectCliente(${clients.indexOf(cliente)});">
+    clients.forEach(function (cliente) {
+        let register =
+        `<tr>
             <td> ${cliente.id}</td>
             <td> ${cliente.nombre}</td> 
             <td> ${cliente.email}</td>
             <td> ${cliente.estatus}</td>
             <td>
-                <button class="btn" style=" ${btnStyle} " onclick="showEditForm(${cliente.id})">Editar</button>
-                <button class="btn" style=" ${btnStyle} " onclick="deleteClient(${cliente.id})">Eliminar</button>
+            
+                <button class="btn btn-succes" style=" ${btnStyleEdit} " onclick="moduloCliente.showEditForm(${cliente.id})"><i class="fa-solid fa-pencil"></button></i>
+                <button class="btn" style=" ${btnStyleDelete} " onclick="moduloCliente.deleteClient(${cliente.id})"><i class="fa-solid fa-trash-can"></button></i>
             </td>
-        </tr>`; 
-        
+        </tr>`;
+
         body += register;
     });
 
@@ -135,18 +106,171 @@ export function loadTabla()
     document.getElementById("client-table").innerHTML = body;
 }
 
-export function selectCliente(index){
-    document.getElementById("nombre-input").value = clients[index].nombre;
-    document.getElementById("genero-input").value = clients[index].genero ;
-    document.getElementById("fecha-nacimiento-input").value = clients[index].fechaNacimiento;
-    document.getElementById("rfc-input").value = clients[index].rfc;
-    document.getElementById("curp-input").value = clients[index].curp;
-    document.getElementById("calle-input").value = clients[index].calle;
-    document.getElementById("colonia-input").value = clients[index].colonia;
-    document.getElementById("numero-ext-input").value = clients[index].numeroExt;
-    document.getElementById("codigo-postal-input").value = clients[index].codigoPostal;
-    document.getElementById("ciudad-input").value = clients[index].ciudad;
-    document.getElementById("estado-input").value = clients[index].estado;
-    document.getElementById("telefono-input").value = clients[index].telefono;
-    document.getElementById("email-input").value = clients[index].email;
+export function editClient() 
+{
+    let clientIdInput = document.getElementById("edit-client-id");
+    let clientId = parseInt(clientIdInput.value);
+    let nombreInput = document.getElementById("edit-nombre-input");
+    let generoInput = document.getElementById("edit-genero-input");
+    let fechaNacimientoInput = document.getElementById("edit-fecha-nacimiento-input");
+    let rfcInput = document.getElementById("edit-rfc-input");
+    let curpInput = document.getElementById("edit-curp-input");
+    let calleInput = document.getElementById("edit-calle-input");
+    let coloniaInput = document.getElementById("edit-colonia-input");
+    let numeroExtInput = document.getElementById("edit-numero-ext-input");
+    let codigoPostalInput = document.getElementById("edit-codigo-postal-input");
+    let ciudadInput = document.getElementById("edit-ciudad-input");
+    let estadoInput = document.getElementById("edit-estado-input");
+    let telefonoInput = document.getElementById("edit-telefono-input");
+    let emailInput = document.getElementById("edit-email-input");
+
+    let editedClient = {
+        id: clientId,
+        nombre: nombreInput.value,
+        genero: generoInput.value,
+        fechaNacimiento: fechaNacimientoInput.value,
+        rfc: rfcInput.value,
+        curp: curpInput.value,
+        calle: calleInput.value,
+        colonia: coloniaInput.value,
+        numeroExt: numeroExtInput.value,
+        codigoPostal: codigoPostalInput.value,
+        ciudad: ciudadInput.value,
+        estado: estadoInput.value,
+        telefono: telefonoInput.value,
+        email: emailInput.value,
+        estatus: "Activo"
+    };
+
+    // Actualizar los datos del cliente en el array
+    let index = clients.findIndex(client => client.id === clientId);
+    if (index !== -1) {
+        clients[index] = editedClient;
+    }
+
+    loadTabla();
+    clearEditForm();
+}
+
+export function showEditForm(clientId) 
+{
+    let client = clients.find(client => client.id === clientId);
+    if (client) {
+        let clientIdInput = document.getElementById("edit-client-id");
+        let nombreInput = document.getElementById("edit-nombre-input");
+        let generoInput = document.getElementById("edit-genero-input");
+        let fechaNacimientoInput = document.getElementById("edit-fecha-nacimiento-input");
+        let rfcInput = document.getElementById("edit-rfc-input");
+        let curpInput = document.getElementById("edit-curp-input");
+        let calleInput = document.getElementById("edit-calle-input");
+        let coloniaInput = document.getElementById("edit-colonia-input");
+        let numeroExtInput = document.getElementById("edit-numero-ext-input");
+        let codigoPostalInput = document.getElementById("edit-codigo-postal-input");
+        let ciudadInput = document.getElementById("edit-ciudad-input");
+        let estadoInput = document.getElementById("edit-estado-input");
+        let telefonoInput = document.getElementById("edit-telefono-input");
+        let emailInput = document.getElementById("edit-email-input");
+
+        clientIdInput.value = client.id;
+        nombreInput.value = client.nombre;
+        generoInput.value = client.genero;
+        fechaNacimientoInput.value = client.fechaNacimiento;
+        rfcInput.value = client.rfc;
+        curpInput.value = client.curp;
+        calleInput.value = client.calle;
+        coloniaInput.value = client.colonia;
+        numeroExtInput.value = client.numeroExt;
+        codigoPostalInput.value = client.codigoPostal;
+        ciudadInput.value = client.ciudad;
+        estadoInput.value = client.estado;
+        telefonoInput.value = client.telefono;
+        emailInput.value = client.email;
+        estatus.value = "Activo";
+    }
+
+    clean();
+}
+
+export function deleteClient(clientId) 
+{
+    let client = clients.find(client => client.id === clientId);
+
+    if (client) {
+        client.estatus = "Inactivo";
+    }
+
+    clearEditForm();
+    loadTabla();
+}
+
+export function clearEditForm() 
+{
+    let clientIdInput = document.getElementById("edit-client-id");
+    let nombreInput = document.getElementById("edit-nombre-input");
+    let generoInput = document.getElementById("edit-genero-input");
+    let fechaNacimientoInput = document.getElementById("edit-fecha-nacimiento-input");
+    let rfcInput = document.getElementById("edit-rfc-input");
+    let curpInput = document.getElementById("edit-curp-input");
+    let calleInput = document.getElementById("edit-calle-input");
+    let coloniaInput = document.getElementById("edit-colonia-input");
+    let numeroExtInput = document.getElementById("edit-numero-ext-input");
+    let codigoPostalInput = document.getElementById("edit-codigo-postal-input");
+    let ciudadInput = document.getElementById("edit-ciudad-input");
+    let estadoInput = document.getElementById("edit-estado-input");
+    let telefonoInput = document.getElementById("edit-telefono-input");
+    let emailInput = document.getElementById("edit-email-input");
+
+    clientIdInput.value = "";
+    nombreInput.value = "";
+    generoInput.value = "";
+    fechaNacimientoInput.value = "";
+    rfcInput.value = "";
+    curpInput.value = "";
+    calleInput.value = "";
+    coloniaInput.value = "";
+    numeroExtInput.value = "";
+    codigoPostalInput.value = "";
+    ciudadInput.value = "";
+    estadoInput.value = "";
+    telefonoInput.value = "";
+    emailInput.value = "";
+}
+
+export function searchClient(event) 
+{
+    event.preventDefault();
+  
+    let searchInput = document.getElementById("search-input");
+    let clientId = parseInt(searchInput.value);
+  
+    let foundClient = clients.find(client => client.id === clientId);
+  
+    if (foundClient) {
+      let clientDetails = document.getElementById("client-details");
+      clientDetails.innerHTML = `
+        <h3>Cliente Encontrado</h3>
+        <p>ID: ${foundClient.id}</p>
+        <p>Nombre: ${foundClient.nombre}</p>
+        <p>Género: ${foundClient.genero}</p>
+        <p>Fecha de nacimiento: ${foundClient.fechaNacimiento}</p>
+        <p>RFC: ${foundClient.rfc}</p>
+        <p>CURP: ${foundClient.curp}</p>
+        <p>Calle: ${foundClient.calle}</p>
+        <p>Colonia: ${foundClient.colonia}</p>
+        <p>Número Ext: ${foundClient.numeroExt}</p>
+        <p>Código postal: ${foundClient.codigoPostal}</p>
+        <p>Ciudad: ${foundClient.ciudad}</p>
+        <p>Estado: ${foundClient.estado}</p>
+        <p>Teléfono: ${foundClient.telefono}</p>
+        <p>Email: ${foundClient.email}</p>
+        <p>Estatus: ${foundClient.estatus}</p>
+        <p>Imagen: </p>
+        <img src="${foundClient.imagen}" alt="Imagen de ${foundClient.nombre}" width="200">
+      `;
+    } else {
+      let clientDetails = document.getElementById("client-details");
+      clientDetails.innerHTML = `
+        <p>No se encontró ningún cliente con el ID proporcionado.</p>
+      `;
+    }
 }
