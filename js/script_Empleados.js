@@ -103,6 +103,7 @@ export function agregarEmpleado() {
   nuevoEmpleado.status = "Activo";
 
   empleados.push(nuevoEmpleado);
+  clean();
   mostrarEmpleados();
 }
 
@@ -126,6 +127,27 @@ export function mostrarEmpleados() {
 
   console.log(tablaEmpleados);
   document.getElementById("employee-table").innerHTML = tablaEmpleados;
+}
+
+export function clean()
+{
+  document.getElementById("nombre-input").value = "";
+  document.getElementById("genero-input").value = "";
+  document.getElementById("fecha-nacimiento-input").value = "";
+  document.getElementById("rfc-input").value = "";
+  document.getElementById("curp-input").value = "";
+  document.getElementById("calle-input").value = "";
+  document.getElementById("colonia-input").value = "";
+  document.getElementById("numero-ext-input").value = "";
+  document.getElementById("codigo-postal-input").value = "";
+  document.getElementById("ciudad-input").value = "";
+  document.getElementById("estado-input").value = "";
+  document.getElementById("telefono-input").value = "";
+  document.getElementById("email-input").value = "";
+  document.getElementById("puesto-input").value = "";
+  document.getElementById("salario-input").value = "";
+  document.getElementById("codigo-input").value = "";
+  document.getElementById("fecha-ingreso-input").value = "";
 }
 
 // Función para buscar un empleado por ID

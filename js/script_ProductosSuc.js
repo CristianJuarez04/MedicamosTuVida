@@ -66,7 +66,16 @@ export function agregarProducto() {
   document.getElementById("precio-input").innerHTML = "";
   document.getElementById("existencias-input").innerHTML = "";
 
+  clean();
   mostrarProductos();
+}
+
+export function clean()
+{
+  document.getElementById("nombre-input").value = "";
+  document.getElementById("precio-input").value = "";
+  document.getElementById("existencias-input").value = "";
+  document.getElementById("imagen-input").value = "";
 }
 
 // Función para mostrar los productos en la tabla

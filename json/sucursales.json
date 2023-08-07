@@ -1,0 +1,62 @@
+[
+  {
+    "id_Sucursal": 1,
+    "nombre_Sucursal": "Farmacia Central",
+    "nombre_Duenio": "Roberto López",
+    "rfc_duenio": "RFC987654321",
+    "domicilio": "Av. Juárez",
+    "colonia": "Centro",
+    "ciudad": "México",
+    "estado": "Ciudad de México",
+    "cp_sucursal": 12345,
+    "tel_sucursal": "1111111111",
+    "longitud": 19.4326,
+    "latitud": -99.1332,
+    "estatus": "Activo"
+  },
+  {
+    "id_Sucursal": 2,
+    "nombre_Sucursal": "Sucursal A",
+    "nombre_Duenio": "Pedro",
+    "rfc_duenio": "RFC123",
+    "domicilio": "Calle Principal 123",
+    "colonia": "Colonia Centro",
+    "ciudad": "Ciudad A",
+    "estado": "Estado A",
+    "cp_sucursal": 12345,
+    "tel_sucursal": "555-1234",
+    "longitud": 25.123456,
+    "latitud": 35.654321,
+    "estatus": "Activo"
+  },
+  {
+    "id_Sucursal": 3,
+    "nombre_Sucursal": "Sucursal B",
+    "nombre_Duenio": "Pablo",
+    "rfc_duenio": "RFC456",
+    "domicilio": "Calle Secundaria 456",
+    "colonia": "Colonia Norte",
+    "ciudad": "Ciudad B",
+    "estado": "Estado B",
+    "cp_sucursal": 54321,
+    "tel_sucursal": "555-5678",
+    "longitud": 26.123456,
+    "latitud": 36.654321,
+    "estatus": "Activo"
+  },
+  {
+    "id_Sucursal": 4,
+    "nombre_Sucursal": "Sucursal C",
+    "nombre_Duenio": "Juan",
+    "rfc_duenio": "RFC789",
+    "domicilio": "Calle Principal 789",
+    "colonia": "Colonia Sur",
+    "ciudad": "Ciudad C",
+    "estado": "Estado C",
+    "cp_sucursal": 98765,
+    "tel_sucursal": "555-9876",
+    "longitud": 27.123456,
+    "latitud": 37.654321,
+    "estatus": "Activo"
+  }
+]

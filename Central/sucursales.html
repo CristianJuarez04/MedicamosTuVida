@@ -8,6 +8,7 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Dirección</th>
+                            <th>Estatus</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -22,9 +23,8 @@
             <input type="text" id="nombre-suc-input" class="form-control formularios2" placeholder="Nombre de Sucursal">
             <input type="text" id="nombre-tit-input" class="form-control formularios2" placeholder="Nombre del titular">
             <input type="text" id="rfc-tit-input" class="form-control formularios2" placeholder="RFC del titular">
-            <input type="text" id="calle-suc-input" class="form-control formularios2" placeholder="Calle">
+            <input type="text" id="calle-suc-input" class="form-control formularios2" placeholder="Calle y número">
             <input type="text" id="colonia-suc-input" class="form-control formularios2" placeholder="Colonia">
-            <input type="text" id="numero-ext-suc-input" class="form-control formularios2" placeholder="Número Ext">
             <input type="text" id="codigo-postal-suc-input" class="form-control formularios2"
                 placeholder="Código postal">
             <input type="text" id="ciudad-suc-input" class="form-control formularios2" placeholder="Ciudad">
@@ -33,44 +33,39 @@
             <input type="text" id="long-input" class="form-control formularios2" placeholder="Longitud">
             <input type="text" id="lat-input" class="form-control formularios2" placeholder="Latitud">
 
-            <input type="submit" value="Agregar" onclick="moduloSuc.addSuc(event)">
+            <input type="submit" class="btn form-control mandar" value="Agregar">
         </div>
     </div>
-
 
     <div class="card col-lg-6 col-md-12 col-sm-12 derecho">
         <br>
         <div class="card-body">
-            <div id="suc-details" class="datos table-responsive" style="margin-bottom: 20px; max-height: 12em; min-height: 12em;">
-            </div>
-            
-                <input type="text" id="search-input" placeholder="Buscar por ID de sucursal"
-                    class="form-control formularios2">
-                <input type="submit" value="Buscar" onsubmit="moduloSuc.searchSuc(event)">
-            
+            <div id="suc-details" class="datos table-responsive"
+                style="margin-bottom: 20px; max-height: 12em; min-height: 12em;">
 
-                <h2>Editar Sucursal</h2>
-                <input type="hidden" id="edit-suc-id">
-                <input type="text" id="edit-nombre-suc-input" class="form-control formularios2"
-                    placeholder="Nombre de sucursal">
-                <input type="text" id="edit-nombre-tit-input" class="form-control formularios2"
-                    placeholder="Nombre del titular">
-                <input type="text" id="edit-rfc-tit-input" class="form-control formularios2"
-                    placeholder="RFC del titular">
-                <input type="text" id="edit-calle-suc-input" class="form-control formularios2" placeholder="Calle">
-                <input type="text" id="edit-colonia-suc-input" class="form-control formularios2" placeholder="Colonia">
-                <input type="text" id="edit-numero-ext-suc-input" class="form-control formularios2"
-                    placeholder="Número Ext">
-                <input type="text" id="edit-codigo-postal-suc-input" class="form-control formularios2"
-                    placeholder="Código postal">
-                <input type="text" id="edit-ciudad-suc-input" class="form-control formularios2" placeholder="Ciudad">
-                <input type="text" id="edit-estado-suc-input" class="form-control formularios2" placeholder="Estado">
-                <input type="text" id="edit-telefono-suc-input" class="form-control formularios2"
-                    placeholder="Teléfono">
-                <input type="text" id="edit-long-input" class="form-control formularios2" placeholder="Longitud">
-                <input type="text" id="edit-lat-input" class="form-control formularios2" placeholder="Latitud">
-                <input type="submit" value="Guardar" onsubmit="moduloSuc.editSuc(event)">
-                <button type="button" onclick="moduloSuc.deleteSuc()">Eliminar</button>
+            </div>
+            <input type="text" id="search-input" placeholder="Buscar por ID de sucursal"
+                class="form-control formularios2">
+            <input type="submit" value="Buscar" class="btn form-control mandar"
+                onclick="moduloSuc.searchSucursal(event);">
+
+            <h2>Editar Sucursal</h2>
+            <input type="hidden" id="edit-suc-id">
+            <input type="text" id="edit-nombre-suc-input" class="form-control formularios2"
+                placeholder="Nombre de sucursal">
+            <input type="text" id="edit-nombre-tit-input" class="form-control formularios2"
+                placeholder="Nombre del titular">
+            <input type="text" id="edit-rfc-tit-input" class="form-control formularios2" placeholder="RFC del titular">
+            <input type="text" id="edit-calle-suc-input" class="form-control formularios2" placeholder="Calle y número">
+            <input type="text" id="edit-colonia-suc-input" class="form-control formularios2" placeholder="Colonia">
+            <input type="text" id="edit-codigo-postal-suc-input" class="form-control formularios2"
+                placeholder="Código postal">
+            <input type="text" id="edit-ciudad-suc-input" class="form-control formularios2" placeholder="Ciudad">
+            <input type="text" id="edit-estado-suc-input" class="form-control formularios2" placeholder="Estado">
+            <input type="text" id="edit-telefono-suc-input" class="form-control formularios2" placeholder="Teléfono">
+            <input type="text" id="edit-long-input" class="form-control formularios2" placeholder="Longitud">
+            <input type="text" id="edit-lat-input" class="form-control formularios2" placeholder="Latitud">
+            <input type="submit" value="Guardar" class="btn form-control mandar" onclick="moduloSuc.editSuc()">
         </div>
     </div>
     <div id="map">
