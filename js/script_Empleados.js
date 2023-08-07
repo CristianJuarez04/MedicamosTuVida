@@ -1,193 +1,157 @@
-let empleados = [
-  {
-    id: 1,
-    nombre: "Juan Gómez Pérez",
-    genero: "Masculino",
-    fechaNacimiento: "15/05/1990",
-    rfc: "RFC123456789",
-    curp: "GOPJ900515HDFMRN93",
-    calle: "Calle Principal",
-    colonia: "Centro",
-    numeroExt: "123",
-    codigoPostal: "12345",
-    ciudad: "Ciudad de México",
-    estado: "Ciudad de México",
-    telefono: "555-5555",
-    email: "juan@gmail.com",
-    puesto: "Vendedor",
-    salario: "$2500",
-    codigo: "23070001",
-    fechaIngreso: "18/07/2023",
-    status: "Activo"
-  },
-  {
-    id: 2,
-    nombre: "Laura Gonzáles Sánchez",
-    genero: "Femenino",
-    fechaNacimiento: "20/08/1985",
-    rfc: "RFC123456789",
-    curp: "GOSL850820MJCNNR33",
-    calle: "Rosas",
-    colonia: "Centro",
-    numeroExt: "123",
-    codigoPostal: "54321",
-    ciudad: "Guadalajara",
-    estado: "Jalisco",
-    telefono: "555-1111",
-    email: "laura@gmail.com",
-    puesto: "Administrador",
-    salario: "$2800",
-    codigo: "23070002",
-    fechaIngreso: "18/07/2023",
-    status: "Activo"
-  },
-  {
-    id: 3,
-    nombre: "Juan Pérez Ortiz",
-    genero: "Masculino",
-    fechaNacimiento: "15/05/1990",
-    rfc: "RFC123456780",
-    curp: "PEOJ900515HDFRRN36",
-    calle: "Calle Principal",
-    colonia: "Centro",
-    numeroExt: "123",
-    codigoPostal: "12345",
-    ciudad: "Ciudad de México",
-    estado: "Ciudad de México",
-    telefono: "555-5555",
-    email: "juan@gmail.com",
-    puesto: "Vendedor",
-    salario: "$2500",
-    codigo: "23070003",
-    fechaIngreso: "18/07/2023",
-    status: "Activo"
-  },
-  {
-    id: 4,
-    nombre: "María Gónzález Rojas",
-    genero: "Femenino",
-    fechaNacimiento: "20/09/1985",
-    rfc: "RFC4567890123",
-    curp: "PEJU900512HDFRNR04",
-    calle: "Avenida Reforma",
-    colonia: "Juárez",
-    numeroExt: "465",
-    codigoPostal: "54321",
-    ciudad: "Ciudad de México",
-    estado: "Ciudad de México",
-    telefono: "555-5678",
-    email: "maria@gmail.com",
-    puesto: "Vendedor",
-    salario: "$2500",
-    codigo: "23070004",
-    fechaIngreso: "18/07/2023",
-    status: "Activo"
-  },
-  {
-    id: 5,
-    nombre: "Carlos López Cabrera",
-    genero: "Masculino",
-    fechaNacimiento: "10/03/1992",
-    rfc: "RFC7890123456",
-    curp: "PEJU900512HDFRNR04",
-    calle: "5 de Mayo",
-    colonia: "Centro",
-    numeroExt: "789",
-    codigoPostal: "98765",
-    ciudad: "Guadalajara",
-    estado: "Jalisco",
-    telefono: "555-9012",
-    email: "juan@gmail.com",
-    puesto: "Vendedor",
-    salario: "$2500",
-    codigo: "23070005",
-    fechaIngreso: "18/07/2023",
-    status: "Activo"
-  }
-];
-
+let empleados = [];
 let idEmpleadoSeleccionado = null;
-let btnStyle = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #0059b3; color: #fff;";
+let btnStyleEdit = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #00931b; color: #fff;";
+let btnStyleDelete = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #bf0000; color: #fff;";
 
+fetch("../json/empleados.json")
+  .then(response => {
+    return response.json();
+  })
+  .then(function (jsondata) {
+    empleados = jsondata;
+    console.log(empleados);
+    mostrarEmpleados();
+  }
+  );
+
+//Funcion para verificar que los campos del formulario agregar empleados estan llenos y proseguir con las operaciones de ser asi
+document.querySelector('.mandar').addEventListener('click', function (event) {
+  event.preventDefault();
+  let nombre = document.querySelector('#nombre-input').value;
+  let genero = document.querySelector('#genero-input').value;
+  let fechaNacimiento = document.querySelector('#fecha-nacimiento-input').value;
+  let rfc = document.querySelector('#rfc-input').value;
+  let curp = document.querySelector('#curp-input').value;
+  let calle = document.querySelector('#calle-input').value;
+  let colonia = document.querySelector('#colonia-input').value;
+  let numeroExt = document.querySelector('#numero-ext-input').value;
+  let codigoPostal = document.querySelector('#codigo-postal-input').value;
+  let ciudad = document.querySelector('#ciudad-input').value;
+  let estado = document.querySelector('#estado-input').value;
+  let telefono = document.querySelector('#telefono-input').value;
+  let email = document.querySelector('#email-input').value;
+  let puesto = document.querySelector('#puesto-input').value;
+  let salario = document.querySelector('#salario-input').value;
+  let codigo = document.querySelector('#codigo-input').value;
+  let fechaIngreso = document.querySelector('#fecha-ingreso-input').value;
+  let imagen = document.querySelector('#imagen-input').value;
+
+  if (nombre && genero && fechaNacimiento && rfc && curp && calle && colonia && numeroExt && codigoPostal && ciudad && estado && telefono && email && puesto && salario && codigo && fechaIngreso && imagen) {
+    moduloEmpleado.agregarEmpleado();
+  } else {
+    alert('Por favor, llene todos los campos antes de enviar el formulario.');
+  }
+});
+
+// Función para agregar un empleado
+export function agregarEmpleado() {
+  let nombreInput,
+    generoInput,
+    fechaNacimientoInput,
+    rfcInput,
+    curpInput,
+    calleInput,
+    coloniaInput,
+    numeroExtInput,
+    codigoPostalInput,
+    ciudadInput,
+    estadoInput,
+    telefonoInput,
+    emailInput,
+    puestoInput,
+    salarioInput,
+    codigoInput,
+    fechaIngresoInput;
+
+  nombreInput = document.getElementById("nombre-input").value;
+  generoInput = document.getElementById("genero-input").value;
+  fechaNacimientoInput = document.getElementById("fecha-nacimiento-input").value;
+  rfcInput = document.getElementById("rfc-input").value;
+  curpInput = document.getElementById("curp-input").value;
+  calleInput = document.getElementById("calle-input").value;
+  coloniaInput = document.getElementById("colonia-input").value;
+  numeroExtInput = document.getElementById("numero-ext-input").value;
+  codigoPostalInput = document.getElementById("codigo-postal-input").value;
+  ciudadInput = document.getElementById("ciudad-input").value;
+  estadoInput = document.getElementById("estado-input").value;
+  telefonoInput = document.getElementById("telefono-input").value;
+  emailInput = document.getElementById("email-input").value;
+  puestoInput = document.getElementById("puesto-input").value;
+  salarioInput = document.getElementById("salario-input").value;
+  codigoInput = document.getElementById("codigo-input").value;
+  fechaIngresoInput = document.getElementById("fecha-ingreso-input").value;
+
+  let nuevoEmpleado = {}
+  nuevoEmpleado.id = empleados.length + 1;
+  nuevoEmpleado.nombre = nombreInput;
+  nuevoEmpleado.genero = generoInput;
+  nuevoEmpleado.fechaNacimiento = fechaNacimientoInput;
+  nuevoEmpleado.rfc = rfcInput;
+  nuevoEmpleado.curp = curpInput;
+  nuevoEmpleado.calle = calleInput;
+  nuevoEmpleado.colonia = coloniaInput;
+  nuevoEmpleado.numeroExt = numeroExtInput;
+  nuevoEmpleado.codigoPostal = codigoPostalInput;
+  nuevoEmpleado.ciudad = ciudadInput;
+  nuevoEmpleado.estado = estadoInput;
+  nuevoEmpleado.telefono = telefonoInput;
+  nuevoEmpleado.email = emailInput;
+  nuevoEmpleado.puesto = puestoInput;
+  nuevoEmpleado.salario = salarioInput;
+  nuevoEmpleado.codigo = codigoInput;
+  nuevoEmpleado.fechaIngreso = fechaIngresoInput;
+  nuevoEmpleado.status = "Activo";
+
+  empleados.push(nuevoEmpleado);
+  clean();
+  mostrarEmpleados();
+}
 
 // Función para mostrar los empleados en la tabla
-function mostrarEmpleados() {
-  let tablaEmpleados = document.getElementById("employee-table");
-  tablaEmpleados.innerHTML = "";
+export function mostrarEmpleados() {
+  let tablaEmpleados = "";
 
-  empleados.forEach(empleado => {
-    let fila = document.createElement("tr");
-    fila.innerHTML = `
+  empleados.forEach(function (empleado) {
+    let fila =
+      `<tr>
       <td>${empleado.id}</td>
       <td>${empleado.nombre}</td>
       <td>${empleado.email}</td>
       <td>${empleado.status}</td>
       <td>
-        <button class="btn" style="${btnStyle}" onclick="mostrarFormularioEdicion(${empleado.id})">Editar</button>` +
-        //<button class="btn" style="${btnStyle}" onclick="eliminarEmpleado(${empleado.id})">Eliminar</button>
-      `</td>`;
-    tablaEmpleados.appendChild(fila);
+        <button class="btn" style="${btnStyleEdit}" onclick="moduloEmpleado.mostrarFormularioEdicion(${empleado.id})"><i class="fa-solid fa-pencil"></button></i>
+        <button class="btn" style="${btnStyleDelete}" onclick="moduloEmpleado.eliminarEmpleado(${empleado.id})"><i class="fa-solid fa-trash-can"></button></i>
+      </td></tr>`;
+    tablaEmpleados += fila;
   });
+
+  console.log(tablaEmpleados);
+  document.getElementById("employee-table").innerHTML = tablaEmpleados;
 }
 
-// Función para agregar un empleado
-function agregarEmpleado(evento) {
-  evento.preventDefault();
-
-  let nombreInput = document.getElementById("nombre-input");
-  let generoInput = document.getElementById("genero-input");
-  let fechaNacimientoInput = document.getElementById("fecha-nacimiento-input");
-  let rfcInput = document.getElementById("rfc-input");
-  let curpInput = document.getElementById("curp-input");
-  let calleInput = document.getElementById("calle-input");
-  let coloniaInput = document.getElementById("colonia-input");
-  let numeroExtInput = document.getElementById("numero-ext-input");
-  let codigoPostalInput = document.getElementById("codigo-postal-input");
-  let ciudadInput = document.getElementById("ciudad-input");
-  let estadoInput = document.getElementById("estado-input");
-  let telefonoInput = document.getElementById("telefono-input");
-  let emailInput = document.getElementById("email-input");
-  let puestoInput = document.getElementById("puesto-input");
-  let salarioInput = document.getElementById("salario-input");
-  let codigoInput = document.getElementById("codigo-input");
-  let fechaIngresoInput = document.getElementById("fecha-ingreso-input");
-  let imagenInput = document.getElementById("imagen-input");
-
-  let imagenURL = "";
-  if (imagenInput.files.length > 0) {
-    imagenURL = URL.createObjectURL(imagenInput.files[0]);
-  }
-
-  let nuevoEmpleado = {
-        id: empleados.length + 1,
-        nombre: nombreInput.value,
-        genero: generoInput.value,
-        fechaNacimiento: fechaNacimientoInput.value,
-        rfc: rfcInput.value,
-        curp: curpInput.value,
-        calle: calleInput.value,
-        colonia: coloniaInput.value,
-        numeroExt: numeroExtInput.value,
-        codigoPostal: codigoPostalInput.value,
-        ciudad: ciudadInput.value,
-        estado: estadoInput.value,
-        telefono: telefonoInput.value,
-        email: emailInput.value,
-        puesto: puestoInput.value,
-        salario: salarioInput.value,
-        codigo: codigoInput.value,
-        fechaIngreso: fechaIngresoInput.value,
-        status: "Activo",
-        imagen: imagenURL
-  };
-
-  empleados.push(nuevoEmpleado);
-  mostrarEmpleados();
+export function clean()
+{
+  document.getElementById("nombre-input").value = "";
+  document.getElementById("genero-input").value = "";
+  document.getElementById("fecha-nacimiento-input").value = "";
+  document.getElementById("rfc-input").value = "";
+  document.getElementById("curp-input").value = "";
+  document.getElementById("calle-input").value = "";
+  document.getElementById("colonia-input").value = "";
+  document.getElementById("numero-ext-input").value = "";
+  document.getElementById("codigo-postal-input").value = "";
+  document.getElementById("ciudad-input").value = "";
+  document.getElementById("estado-input").value = "";
+  document.getElementById("telefono-input").value = "";
+  document.getElementById("email-input").value = "";
+  document.getElementById("puesto-input").value = "";
+  document.getElementById("salario-input").value = "";
+  document.getElementById("codigo-input").value = "";
+  document.getElementById("fecha-ingreso-input").value = "";
 }
 
 // Función para buscar un empleado por ID
-function buscarEmpleado(evento) 
-{
+export function buscarEmpleado(evento) {
   evento.preventDefault();
 
   let inputBusqueda = document.getElementById("busqueda-input");
@@ -217,8 +181,6 @@ function buscarEmpleado(evento)
       <p>Salario: ${empleadoEncontrado.salario}</p>
       <p>Código: ${empleadoEncontrado.codigo}</p>
       <p>Fecha de ingreso: ${empleadoEncontrado.fechaIngreso}</p>
-      <p>Imagen:</p>
-      <img src="${empleadoEncontrado.imagen}" alt="Imagen de ${empleadoEncontrado.nombre}" width="200">
     `;
   } else {
     let detallesEmpleado = document.getElementById("detalles-empleado");
@@ -229,9 +191,7 @@ function buscarEmpleado(evento)
 }
 
 // Función para editar los datos de un empleado
-function editarEmpleado(evento) {
-  evento.preventDefault();
-
+export function editarEmpleado() {
   let nombreInput = document.getElementById("edit-nombre-input");
   let generoInput = document.getElementById("edit-genero-input");
   let fechaNacimientoInput = document.getElementById("edit-fecha-nacimiento-input");
@@ -274,17 +234,16 @@ function editarEmpleado(evento) {
 
   // Actualizar los datos del empleado en el array
   let indice = empleados.findIndex(empleado => empleado.id === idEmpleadoSeleccionado);
-  if (indice !== -1) 
-  {
+  if (indice !== -1) {
     empleados[indice] = empleadoEditado;
   }
 
-  mostrarEmpleados();
   limpiarFormularioEdicion();
+  mostrarEmpleados();
 }
 
 // Función para cambiar el status de un empleado a "inactivo"
-function eliminarEmpleado() {
+export function eliminarEmpleado(idEmpleadoSeleccionado) {
   if (idEmpleadoSeleccionado !== null) {
     // Buscamos al empleado en el array por su ID
     let empleado = empleados.find(empleado => empleado.id === idEmpleadoSeleccionado);
@@ -298,16 +257,14 @@ function eliminarEmpleado() {
       limpiarFormularioEdicion();
       // Actualizamos la tabla y los detalles del empleado
       mostrarEmpleados();
-      mostrarDetallesEmpleado(null);
     }
   }
 }
 
 // Función para mostrar el formulario de edición con los datos de un empleado
-function mostrarFormularioEdicion(idEmpleado) {
+export function mostrarFormularioEdicion(idEmpleado) {
   let empleado = empleados.find(empleado => empleado.id === idEmpleado);
-  if (empleado) 
-  {
+  if (empleado) {
     idEmpleadoSeleccionado = empleado.id;
 
     let nombreInput = document.getElementById("edit-nombre-input");
@@ -349,7 +306,7 @@ function mostrarFormularioEdicion(idEmpleado) {
 }
 
 // Función para limpiar el formulario de edición
-function limpiarFormularioEdicion() {
+export function limpiarFormularioEdicion() {
   let nombreInput = document.getElementById("edit-nombre-input");
   let generoInput = document.getElementById("edit-genero-input");
   let fechaNacimientoInput = document.getElementById("edit-fecha-nacimiento-input");
@@ -386,6 +343,3 @@ function limpiarFormularioEdicion() {
   codigoInput.value = "";
   fechaIngresoInput.value = "";
 }
-
-// Inicializar la tabla de empleados
-mostrarEmpleados();

@@ -1,7 +1,15 @@
 let productos = [];
-let idProductoSeleccionado = null;
-let btnStyleEdit = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #00931b; color: #fff;";
-let btnStyleDelete = "--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin: 1px; background-color: #bf0000; color: #fff;";
+
+fetch("../json/productos.json")
+  .then(response => {
+    return response.json();
+  })
+  .then(function (jsondata) {
+    productos = jsondata;
+    console.log(productos);
+    mostrarProductos();
+  }
+  );
 
 document.querySelector('.mandar').addEventListener('click', function (event) {
   event.preventDefault();
@@ -15,17 +23,6 @@ document.querySelector('.mandar').addEventListener('click', function (event) {
     alert('Por favor, llene todos los campos antes de enviar el formulario.');
   }
 });
-
-fetch("../json/productos.json")
-  .then(response => {
-    return response.json();
-  })
-  .then(function (jsondata) {
-    productos = jsondata;
-    console.log(productos);
-    mostrarProductos();
-  }
-  );
 
 // Función para agregar un producto
 export function agregarProducto() {
@@ -83,7 +80,8 @@ export function clean()
 
 // Función para mostrar los productos en la tabla
 export function mostrarProductos() {
-  let tablaProductos = "";
+  let tablaProductos = "";//document.getElementById("product-table");
+  //tablaProductos.innerHTML = "";
 
   productos.forEach(function (product) {
     let fila =
@@ -92,85 +90,13 @@ export function mostrarProductos() {
       <td>${product.nombre_producto}</td>
       <td>$${product.precioVenta}</td>
       <td>${product.unidades}</td>
-      <td>
-        <button class="btn" style="${btnStyleEdit}" onclick="moduloProducto.mostrarFormularioEdicion(${product.id_Producto})"><i class="fa-solid fa-pencil"></button></i>
-        <button class="btn" style="${btnStyleDelete}" onclick="moduloProducto.eliminarProducto(${product.id_Producto})"><i class="fa-solid fa-trash-can"></button></i>
-      </td></tr>`;
+      </tr>`;
 
     tablaProductos += fila;
   });
 
   console.log(tablaProductos);
   document.getElementById("product-table").innerHTML = tablaProductos;
-}
-
-// Función para eliminar un producto
-export function eliminarProducto(idProductoSeleccionado) {
-  if (idProductoSeleccionado !== null) {
-    // Buscamos el producto en el array por su ID
-    let producto = productos.find(product => product.id_Producto === idProductoSeleccionado);
-
-    if (producto) {
-      // Establecemos las existencias del producto a 0
-      producto.unidades = 0;
-
-      // Limpiamos el producto seleccionado
-      idProductoSeleccionado = null;
-
-      // Actualizamos la tabla y los detalles del producto
-      limpiarFormularioEdicion()
-      mostrarProductos();
-    }
-  }
-}
-
-// Función para mostrar el formulario de edición con los datos de un producto
-export function mostrarFormularioEdicion(idProducto) {
-  let producto = productos.find(producto => producto.id_Producto === idProducto);
-  if (producto) {
-    idProductoSeleccionado = producto.id_Producto;
-
-    let nombreInput = document.getElementById("edit-nombre-input");
-    let precioInput = document.getElementById("edit-precio-input");
-    let existenciasInput = document.getElementById("edit-existencias-input");
-
-    nombreInput.value = producto.nombre_producto;
-    precioInput.value = producto.precioVenta;
-    existenciasInput.value = producto.unidades;
-  }
-}
-
-// Función para limpiar el formulario de edición
-export function limpiarFormularioEdicion() {
-  document.getElementById("edit-nombre-input").value = "";
-  document.getElementById("edit-precio-input").value = "";
-  document.getElementById("edit-existencias-input").value = "";
-
-  // Importante también limpiar el ID del producto seleccionado
-  idProductoSeleccionado = null;
-}
-
-export function editarProducto() {
-  let nombreInput = document.getElementById("edit-nombre-input").value;
-  let precioInput = document.getElementById("edit-precio-input").value;
-  let existenciasInput = document.getElementById("edit-existencias-input").value;
-
-  let productoEditado =
-  {
-    id_Producto: idProductoSeleccionado,
-    nombre_producto: nombreInput,
-    precioVenta: parseFloat(precioInput),
-    unidades: parseInt(existenciasInput),
-  };
-
-  // Actualizar los datos del producto en el array
-  let indice = productos.findIndex(producto => producto.id_Producto === idProductoSeleccionado);
-  if (indice !== -1) {
-    productos[indice] = productoEditado;
-  }
-
-  mostrarProductos();
-  limpiarFormularioEdicion();
 }
 
 // Función para buscar un producto por ID

@@ -1,7 +1,7 @@
 <div class="row fila">
-    <div class="card col-lg-4 col-md-12 col-sm-12 izquierdo">
+    <div class="card col-lg-5 col-md-12 col-sm-12 izquierdo">
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" style="max-height: 20em; min-height: 20em;">
                 <table class="table table-sm">
                     <thead class="table-responsive">
                         <tr>
@@ -9,49 +9,35 @@
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Existencias</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="product-table">
                         <!-- Los datos de los productos se insertarán aquí dinámicamente -->
                     </tbody>
                 </table>
+                 </div>
 
-                <form class="form-container">
-                    <h3>Agregar Producto</h3>
-                    <input type="text" id="nombre-input" placeholder="Nombre" class="form-control formularios1"><br>
-                    <input type="number" id="precio-input" placeholder="Precio" class="form-control-sm formularios1">
-                    <input type="number" id="existencias-input" placeholder="Existencias"
-                        class="form-control-sm formularios1">
-                    <input type="file" id="imagen-input"> <br><br>
-                    <input type="submit" value="Agregar" class="btn form-control mandar"
-                        onclick="agregarProducto(event)"><br><br>
-                </form>
-            </div>
+            <h3>Agregar Producto</h3>
+            <input type="text" id="nombre-input" placeholder="Nombre" class="form-control formularios1"><br>
+            <input type="number" id="precio-input" placeholder="Precio" class="form-control-sm formularios1">
+            <input type="number" id="existencias-input" placeholder="Existencias" class="form-control-sm formularios1">
+            <input type="file" id="imagen-input"> <br><br>
+            <input type="submit" value="Agregar" class="btn form-control mandar"><br><br>
         </div>
     </div>
 
-    <div class="card col-lg-7 col-md-12 col-sm-12 derecho">
+    <div class="card col-lg-6 col-md-12 col-sm-12 derecho">
         <div class="card-body">
             <br>
-            <div id="detalles-producto">
+            <div id="detalles-producto" class="datos table-responsive" style="margin-bottom: 20px; max-height: 12em; min-height: 12em;">
                 <!-- La información del producto seleccionado se mostrará aquí -->
             </div>
-            <form id="busqueda-form" onsubmit="buscarProducto(event)">
-                <input type="text" id="busqueda-input" placeholder="Buscar por ID de producto"
-                    class="form-control formularios1">
-                <input type="submit" class="btn enviar" value="Buscar">
-            </form>
-            <form id="edit-form" onsubmit="editarProducto(event)">
-                <h3>Editar Producto</h3>
-                <input type="hidden" id="edit-id-producto">
-                <input type="text" id="edit-nombre-input" placeholder="Nombre" class="form-control formularios1"><br>
-                <input type="number" id="edit-precio-input" placeholder="Precio" class="form-control-sm formularios1">
-                <input type="number" id="edit-existencias-input" placeholder="Existencias"
-                    class="form-control-sm formularios1"><br><br>
-                <input type="submit" value="Guardar" class="btn form-control mandar"><br><br>
-                <button type="button" class="btn enviar" onclick="eliminarProducto()">Eliminar</button>
-            </form>
+
+            <input type="text" id="busqueda-input" placeholder="Buscar por ID de producto"
+                class="form-control formularios1">
+            <input type="submit" class="btn form-control mandar" value="Buscar"
+                onclick="moduloProductoSuc.loadProducto(event);">
         </div>
     </div>
 </div>
+   

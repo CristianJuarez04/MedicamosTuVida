@@ -1,0 +1,59 @@
+<div class="row fila">
+    <div class="card col-lg-15 col-md-11 col-sm-15 izquierdo">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead class="table-responsive">
+                        <tr>
+                            <th>ID</th>
+                            <th>ID Sucursal</th>
+                            <th>ID Empleado</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Productos</th>
+                            <th>Cantidad</th>
+                            <th>Estatus</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-pedidos-body">
+                        <!-- Los datos de los pedidos se mostrarán aquí -->
+                    </tbody>
+                </table>
+
+                <div class="card col-lg-4 col-md-12 col-sm-12">
+                    <form class="form-container">
+                        <h3>Nuevo pedido</h3>
+                        <div id="productos-container">
+                            <div class="producto-row">
+                                <input type="text" class="producto-nombre" placeholder="Nombre del Producto"
+                                    required> <br><br>
+                                <input type="number" class="producto-cantidad" placeholder="Cantidad" required>
+                            </div>
+                        </div>
+                        <button type="button" class="btn form-control" onclick="agregarProductoRow()">Agregar
+                            Producto</button><br><br>
+                        <input type="submit" value="Concluir Venta" class="btn form-control mandar">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- Elimina el formulario de edición y su contenedor -->
+        <div class="card col-lg-7 col-md-12 col-sm-12 derecho">
+            <div class="card-body">
+                <br>
+
+                <form id="busqueda-form" onsubmit="buscarPedido(event)">
+                    <input type="text" id="busqueda-input" placeholder="Buscar por ID de pedido"
+                        class="form-control formularios1">
+                    <input type="submit" class="btn enviar" value="Buscar">
+                </form>
+                <!-- Elimina el contenedor de edición de pedido -->
+                <div id="detalles-pedido">
+                    <!-- La información del pedido seleccionado se mostrará aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

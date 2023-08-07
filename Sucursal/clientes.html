@@ -1,7 +1,7 @@
 <div class="row fila">
-    <div class="card col-lg-4 col-md-12 col-sm-12 izquierdo">
+    <div class="card col-lg-5 col-md-12 col-sm-12 izquierdo">
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" style="margin-bottom: 2px; max-height: 20em; min-height: 20em;">
                 <table class="table table-sm">
                     <thead class="table-responsive">
                         <tr>
@@ -18,68 +18,62 @@
                 </table>
             </div>
 
-            <form class="form-container" style="margin-top: 2px">
-                <h3>Agregar Cliente</h3>
+            <h3>Agregar Cliente</h3>
 
-                <input type="text" id="nombre-input" class="form-control formularios2" placeholder="Nombre completo">
-                <input type="text" id="genero-input" class="form-control formularios2" placeholder="Género">
-                <input type="text" id="fecha-nacimiento-input" class="form-control formularios2"
-                    placeholder="Fecha de nacimiento">
-                <input type="text" id="rfc-input" class="form-control formularios2" placeholder="RFC">
-                <input type="text" id="curp-input" class="form-control formularios2" placeholder="CURP">
-                <input type="text" id="calle-input" class="form-control formularios2" placeholder="Calle">
-                <input type="text" id="colonia-input" class="form-control formularios2" placeholder="Colonia">
-                <input type="text" id="numero-ext-input" class="form-control formularios2" placeholder="Número Ext">
-                <input type="text" id="codigo-postal-input" class="form-control formularios2"
-                    placeholder="Código postal">
-                <input type="text" id="ciudad-input" class="form-control formularios2" placeholder="Ciudad">
-                <input type="text" id="estado-input" class="form-control formularios2" placeholder="Estado">
-                <input type="text" id="telefono-input" class="form-control formularios2" placeholder="Teléfono">
-                <input type="text" id="email-input" class="form-control formularios2" placeholder="Email">
-                <br>
-                <input type="submit" value="Agregar" class="btn form-control"
-                    style="background-color: #0059b3; color: #fff; width: 75%;" onclick="addClient(event)">
-
-            </form>
+            <input type="text" id="nombre-input" class="form-control formularios2" placeholder="Nombre completo">
+            <input type="text" id="genero-input" class="form-control formularios2" placeholder="Género">
+            <input type="text" id="fecha-nacimiento-input" class="form-control formularios2"
+                placeholder="Fecha de nacimiento">
+            <input type="text" id="rfc-input" class="form-control formularios2" placeholder="RFC">
+            <input type="text" id="curp-input" class="form-control formularios2" placeholder="CURP">
+            <input type="text" id="calle-input" class="form-control formularios2" placeholder="Calle">
+            <input type="text" id="colonia-input" class="form-control formularios2" placeholder="Colonia">
+            <input type="text" id="numero-ext-input" class="form-control formularios2" placeholder="Número Ext">
+            <input type="text" id="codigo-postal-input" class="form-control formularios2" placeholder="Código postal">
+            <input type="text" id="ciudad-input" class="form-control formularios2" placeholder="Ciudad">
+            <input type="text" id="estado-input" class="form-control formularios2" placeholder="Estado">
+            <input type="text" id="telefono-input" class="form-control formularios2" placeholder="Teléfono">
+            <input type="text" id="email-input" class="form-control formularios2" placeholder="Email">
+            <br>
+            <input type="submit" value="Agregar" class="btn form-control"
+                style="background-color: #0059b3; color: #fff; width: 75%;">
         </div>
     </div>
 
     <!--div class="mid-panel">&nbsp;</div-->
 
-    <div class="card col-lg-7 col-md-12 col-sm-12 derecho">
+    <div class="card col-lg-6 col-md-12 col-sm-12 derecho">
         <br>
         <div class="card-body">
-            <div id="client-details" class="datos">
+            <div id="client-details" class="datos table-responsive" style="margin-bottom: 20px; max-height: 12em; min-height: 12em;">
                 <!-- La información del cliente seleccionado se mostrará aquí -->
             </div>
-            <form id="search-form" onsubmit="searchClient(event)" style="margin-top: 20px;">
-                <input type="text" id="search-input" placeholder="Buscar por ID de cliente"
-                    class="form-control formularios2">
-                <input type="submit" value="Buscar" class="btn form-control mandar">
-            </form>
-            <form id="edit-form" onsubmit="editClient(event)" style="margin: 2px;">
-                <h3>Editar Cliente</h3>
-                <input type="hidden" id="edit-client-id" class="form">
-                <input type="text" id="edit-nombre-input" class="form-control formularios2"
-                    placeholder="Nombre completo">
-                <input type="text" id="edit-genero-input" class="form-control formularios2" placeholder="Género">
-                <input type="text" id="edit-fecha-nacimiento-input" class="form-control formularios2"
-                    placeholder="Fecha de nacimiento">
-                <input type="text" id="edit-rfc-input" class="form-control formularios2" placeholder="RFC">
-                <input type="text" id="edit-curp-input" class="form-control formularios2" placeholder="CURP">
-                <input type="text" id="edit-calle-input" class="form-control formularios2" placeholder="Calle">
-                <input type="text" id="edit-colonia-input" class="form-control formularios2" placeholder="Colonia">
-                <input type="text" id="edit-numero-ext-input" class="form-control formularios2"
-                    placeholder="Número Ext">
-                <input type="text" id="edit-codigo-postal-input" class="form-control formularios2"
-                    placeholder="Código postal">
-                <input type="text" id="edit-ciudad-input" class="form-control formularios2" placeholder="Ciudad">
-                <input type="text" id="edit-estado-input" class="form-control formularios2" placeholder="Estado">
-                <input type="text" id="edit-telefono-input" class="form-control formularios2" placeholder="Teléfono">
-                <input type="text" id="edit-email-input" class="form-control formularios2" placeholder="Email">
-                <br>
-                <input type="submit" value="Guardar" class="btn form-control  mandar">
-            </form>
+
+            <input type="text" id="search-input" placeholder="Buscar por ID de cliente"
+                class="form-control formularios2">
+            <input type="submit" value="Buscar" class="btn form-control mandar"
+                onclick="moduloCliente.searchClient(event)">
+
+            <h3>Editar Cliente</h3>
+            <input type="hidden" id="edit-client-id" class="form">
+            <input type="text" id="edit-nombre-input" class="form-control formularios2" placeholder="Nombre completo">
+            <input type="text" id="edit-genero-input" class="form-control formularios2" placeholder="Género">
+            <input type="text" id="edit-fecha-nacimiento-input" class="form-control formularios2"
+                placeholder="Fecha de nacimiento">
+            <input type="text" id="edit-rfc-input" class="form-control formularios2" placeholder="RFC">
+            <input type="text" id="edit-curp-input" class="form-control formularios2" placeholder="CURP">
+            <input type="text" id="edit-calle-input" class="form-control formularios2" placeholder="Calle">
+            <input type="text" id="edit-colonia-input" class="form-control formularios2" placeholder="Colonia">
+            <input type="text" id="edit-numero-ext-input" class="form-control formularios2" placeholder="Número Ext">
+            <input type="text" id="edit-codigo-postal-input" class="form-control formularios2"
+                placeholder="Código postal">
+            <input type="text" id="edit-ciudad-input" class="form-control formularios2" placeholder="Ciudad">
+            <input type="text" id="edit-estado-input" class="form-control formularios2" placeholder="Estado">
+            <input type="text" id="edit-telefono-input" class="form-control formularios2" placeholder="Teléfono">
+            <input type="text" id="edit-email-input" class="form-control formularios2" placeholder="Email">
+            <br>
+            <input type="submit" value="Guardar" class="btn form-control  mandar"
+                onclick="moduloCliente.editClient(event)">
         </div>
     </div>
 </div>

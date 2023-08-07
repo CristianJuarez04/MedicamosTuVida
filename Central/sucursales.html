@@ -1,0 +1,77 @@
+<div class="row fila">
+    <div class="card col-lg-5 col-md-12 col-sm-12 izquierdo">
+        <div class="card-body">
+            <div class="table-responsive" style="margin-bottom: 2px; max-height: 20em; min-height: 20em;">
+                <table class="table table-sm">
+                    <thead class="table-responsive">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shop-table">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Agregar Sucursal</h2>
+
+            <input type="text" id="nombre-suc-input" class="form-control formularios2" placeholder="Nombre de Sucursal">
+            <input type="text" id="nombre-tit-input" class="form-control formularios2" placeholder="Nombre del titular">
+            <input type="text" id="rfc-tit-input" class="form-control formularios2" placeholder="RFC del titular">
+            <input type="text" id="calle-suc-input" class="form-control formularios2" placeholder="Calle y número">
+            <input type="text" id="colonia-suc-input" class="form-control formularios2" placeholder="Colonia">
+            <input type="text" id="codigo-postal-suc-input" class="form-control formularios2"
+                placeholder="Código postal">
+            <input type="text" id="ciudad-suc-input" class="form-control formularios2" placeholder="Ciudad">
+            <input type="text" id="estado-suc-input" class="form-control formularios2" placeholder="Estado">
+            <input type="text" id="telefono-suc-input" class="form-control formularios2" placeholder="Teléfono">
+            <input type="text" id="long-input" class="form-control formularios2" placeholder="Longitud">
+            <input type="text" id="lat-input" class="form-control formularios2" placeholder="Latitud">
+
+            <input type="submit" class="btn form-control mandar" value="Agregar">
+        </div>
+    </div>
+
+    <div class="card col-lg-6 col-md-12 col-sm-12 derecho">
+        <br>
+        <div class="card-body">
+            <div id="suc-details" class="datos table-responsive"
+                style="margin-bottom: 20px; max-height: 12em; min-height: 12em;">
+
+            </div>
+            <input type="text" id="search-input" placeholder="Buscar por ID de sucursal"
+                class="form-control formularios2">
+            <input type="submit" value="Buscar" class="btn form-control mandar"
+                onclick="moduloSuc.searchSucursal(event);">
+
+            <h2>Editar Sucursal</h2>
+            <input type="hidden" id="edit-suc-id">
+            <input type="text" id="edit-nombre-suc-input" class="form-control formularios2"
+                placeholder="Nombre de sucursal">
+            <input type="text" id="edit-nombre-tit-input" class="form-control formularios2"
+                placeholder="Nombre del titular">
+            <input type="text" id="edit-rfc-tit-input" class="form-control formularios2" placeholder="RFC del titular">
+            <input type="text" id="edit-calle-suc-input" class="form-control formularios2" placeholder="Calle y número">
+            <input type="text" id="edit-colonia-suc-input" class="form-control formularios2" placeholder="Colonia">
+            <input type="text" id="edit-codigo-postal-suc-input" class="form-control formularios2"
+                placeholder="Código postal">
+            <input type="text" id="edit-ciudad-suc-input" class="form-control formularios2" placeholder="Ciudad">
+            <input type="text" id="edit-estado-suc-input" class="form-control formularios2" placeholder="Estado">
+            <input type="text" id="edit-telefono-suc-input" class="form-control formularios2" placeholder="Teléfono">
+            <input type="text" id="edit-long-input" class="form-control formularios2" placeholder="Longitud">
+            <input type="text" id="edit-lat-input" class="form-control formularios2" placeholder="Latitud">
+            <input type="submit" value="Guardar" class="btn form-control mandar" onclick="moduloSuc.editSuc()">
+        </div>
+    </div>
+    <div id="map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119096.38302300587!2d-101.74858446799362!3d21.122053934962096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbeffd6e6e721%3A0x606d95ec61a54327!2zTGXDs24sIEd0by4!5e0!3m2!1ses-419!2smx!4v1689814775312!5m2!1ses-419!2smx"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
