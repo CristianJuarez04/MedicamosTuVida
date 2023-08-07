@@ -15,4 +15,29 @@
                         <!-- Los datos de los productos se insertarán aquí dinámicamente -->
                     </tbody>
                 </table>
+                 </div>
+
+            <h3>Agregar Producto</h3>
+            <input type="text" id="nombre-input" placeholder="Nombre" class="form-control formularios1"><br>
+            <input type="number" id="precio-input" placeholder="Precio" class="form-control-sm formularios1">
+            <input type="number" id="existencias-input" placeholder="Existencias" class="form-control-sm formularios1">
+            <input type="file" id="imagen-input"> <br><br>
+            <input type="submit" value="Agregar" class="btn form-control mandar"><br><br>
+        </div>
+    </div>
+
+    <div class="card col-lg-6 col-md-12 col-sm-12 derecho">
+        <div class="card-body">
+            <br>
+            <div id="detalles-producto" class="datos table-responsive" style="margin-bottom: 20px; max-height: 12em; min-height: 12em;">
+                <!-- La información del producto seleccionado se mostrará aquí -->
+            </div>
+
+            <input type="text" id="busqueda-input" placeholder="Buscar por ID de producto"
+                class="form-control formularios1">
+            <input type="submit" class="btn form-control mandar" value="Buscar"
+                onclick="moduloProductoSuc.loadProducto(event);">
+        </div>
+    </div>
+</div>
    
