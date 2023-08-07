@@ -14,7 +14,6 @@ fetch("../json/sucursales.json")
   }
   );
 
-development
 document.querySelector('.mandar').addEventListener('click', function (event) {
   event.preventDefault();
   let nombreSuc = document.querySelector('#nombre-suc-input').value;
@@ -33,122 +32,6 @@ document.querySelector('.mandar').addEventListener('click', function (event) {
     addSucursal();
   } else {
     alert('Por favor, llene todos los campos antes de enviar el formulario.');
-
-// Función para agregar una nueva sucursal
-function addSuc(event) {
-  event.preventDefault();
-
-  let sucIdInput = document.getElementById("nombre-suc-input");
-  let nombreTitInput = document.getElementById("nombre-tit-input");
-  let rfcTitInput = document.getElementById("rfc-tit-input");
-  let calleSucInput = document.getElementById("calle-suc-input");
-  let coloniaSucInput = document.getElementById("colonia-suc-input");
-  let numeroExtSucInput = document.getElementById("numero-ext-suc-input");
-  let codigoPostalSucInput = document.getElementById("codigo-postal-suc-input");
-  let ciudadSucInput = document.getElementById("ciudad-suc-input");
-  let estadoSucInput = document.getElementById("estado-suc-input");
-  let telefonoSucInput = document.getElementById("telefono-suc-input");
-  let longInput = document.getElementById("long-input");
-  let latInput = document.getElementById("lat-input");
-
-  let newSuc = {
-    id: generateUniqueID(),
-    nombreSuc: sucIdInput.value,
-    nombreTit: nombreTitInput.value,
-    rfcTit: rfcTitInput.value,
-    calleSuc: calleSucInput.value,
-    coloniaSuc: coloniaSucInput.value,
-    numeroExtSuc: numeroExtSucInput.value,
-    codigoPostalSuc: codigoPostalSucInput.value,
-    ciudadSuc: ciudadSucInput.value,
-    estadoSuc: estadoSucInput.value,
-    telefonoSuc: telefonoSucInput.value,
-    long: longInput.value,
-    lat: latInput.value,
-  };
-
-   // Agregar la nueva sucursal al arreglo de sucursales
-  suc.push(newSuc);
-
-  showSuc();
-  clearAddForm();
-}
-
-// Función para generar un ID único
-function generateUniqueID() {
-  return Math.random().toString(36).substr(2, 9); // This generates a random alphanumeric ID
-}
-
-// Función para limpiar el formulario de agregar
-function clearAddForm() {
-  document.getElementById("nombre-suc-input").value = "";
-  document.getElementById("nombre-tit-input").value = "";
-  document.getElementById("rfc-tit-input").value = "";
-  document.getElementById("calle-suc-input").value = "";
-  document.getElementById("colonia-suc-input").value = "";
-  document.getElementById("numero-ext-suc-input").value = "";
-  document.getElementById("codigo-postal-suc-input").value = "";
-  document.getElementById("ciudad-suc-input").value = "";
-  document.getElementById("estado-suc-input").value = "";
-  document.getElementById("telefono-suc-input").value = "";
-  document.getElementById("long-input").value = "";
-  document.getElementById("lat-input").value = "";
-}
-
-    // Función para editar los datos de una sucursal
-    function editSuc(event) {
-      event.preventDefault();
-    
-      let sucIdInput = document.getElementById("edit-suc-id");
-      let sucId = parseInt(sucIdInput.value);
-      let nombreSucInput = document.getElementById("edit-nombre-suc-input");
-      let nombreTitInput = document.getElementById("edit-nombre-tit-input");
-      let rfcTitInput = document.getElementById("edit-rfc-tit-input");
-      let calleSucInput = document.getElementById("edit-calle-suc-input");
-      let coloniaSucInput = document.getElementById("edit-colonia-suc-input");
-      let numeroExtSucInput = document.getElementById("edit-numero-ext-suc-input");
-      let codigoPostalSucInput = document.getElementById("edit-codigo-postal-suc-input");
-      let ciudadSucInput = document.getElementById("edit-ciudad-suc-input");
-      let estadoSucInput = document.getElementById("edit-estado-suc-input");
-      let telefonoSucInput = document.getElementById("edit-telefono-suc-input");
-      let longInput = document.getElementById("edit-longitud-input");
-      let latInput = document.getElementById("edit-latitud-input");
-    
-      let editedSuc = {
-        id: sucId,
-        nombreSuc: nombreSucInput.value,
-        nombreTit: nombreTitInput.value,
-        rfcTit: rfcTitInput.value,
-        curpTit: curpTitInput.value,
-        calleSuc: calleSucInput.value,
-        coloniaSuc: coloniaSucInput.value,
-        numeroExtSuc: numeroExtSucInput.value,
-        codigoPostalSuc: codigoPostalSucInput.value,
-        ciudadSuc: ciudadSucInput.value,
-        estadoSuc: estadoSucInput.value,
-        telefonoSuc: telefonoSucInput.value,
-        longitud: longInput.value,
-        latitud: latInput.value
-      };
-    
-      // Actualizar los datos de la sucursal en el array
-      let index = suc.findIndex(suc => suc.id === sucId);
-      if (index !== -1) {
-        suc[index] = editedSuc;
-      }
-    
-      showSuc();
-      clearEditForm();
-    }
-
-  // Función para eliminar una sucursal
-  function deleteSuc(SucId) {
-    // Filtrar el array de sucursales para obtener los que no coinciden con el ID a eliminar
-    suc = suc.filter(suc => suc.id !== sucId);
-  
-    showSuc();
-    clearEditForm();
-master
   }
 });
 
@@ -370,7 +253,6 @@ export function searchSucursal(event) {
     <p>Latitud: ${foundSucursal.latitud}</p>
     <p>Estatus: ${foundSucursal.estatus}</p>`;
   }
-development
   else
   {
     let sucursalDetails = document.getElementById("suc-details");
@@ -397,27 +279,3 @@ export function initMap() {
     title: 'Ubicación'
   });
 }
-
-  
-  // Mostrar las sucursales al cargar la página
-  showSuc();  
-
-  // Función de inicialización del mapa
-  function initMap() {
-    // Coordenadas del centro del mapa
-    let coordenadas = { lat: longInput.value, lng: longInput.value };
-    let opcionesMapa = {
-      center: coordenadas,
-      zoom: 12};
-    
-
-    // Crea el mapa en el elemento con el ID "map"
-    let mapa = new google.maps.Map(document.getElementById('map'), opcionesMapa);
-    
-    // Marcador para la ubicación
-    let marcador = new google.maps.Marker({
-      position: coordenadas,
-      map: mapa,
-      title: 'Ubicación'});
-    }
-master
