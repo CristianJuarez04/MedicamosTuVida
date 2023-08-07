@@ -1,48 +1,15 @@
- const pedidos = [
-    {
-        id: 1,
-        fecha: '22/07/23',
-        sucursal: 'Plaza Mayor',
-        empleado: 'Felipe Ferra Gomez',
-        cp: '37000',
-        ciudad: 'León',
-        estado: 'Guanajuato',
-        total: 23000,
-        estatus: 'activo'
-    },{
-        id:2,
-        fecha: '01/08/23',
-        sucursal: 'Centro Max', 
-        empleado: 'Hassan Emilio Kabande Laija',
-        cp: '35000',
-        ciudad: 'Leon',
-        estado: 'Guanajuato',
-        total: 15346.50,
-        estatus: 'activo'
-    },{
-      id:3,
-      fecha: '26/07/22',
-      sucursales: 'Hermanos Aldama',
-      empleado: 'Pedro Pascual',
-      cp: '42513',
-      ciudad: 'Leon',
-      estado:'Guanjuato',
-      total:20837.50,
-      estatus: 'activo'
-    },
-    {
-        id:4,
-        fecha: '09/06/23',
-        sucursales: 'Centro Max',
-        empleado: 'Ezio Auditore Da Firence',
-        cp: '23000',
-        ciudad: 'Leon',
-        estado:'Guajuato',
-        total:39533,
-        estatus: 'activo'
-    }
-    // Agrega más datos de pedidos aquí
-];
+let pedidos = [];
+
+fetch("../json/pedidosCentral.json")
+  .then(response => {
+    return response.json();
+  })
+  .then(function (jsondata) {
+    pedidos = jsondata;
+    console.log(pedidos);
+    mostrarPedidos();
+  }
+  );
 
 function mostrarDetallesPedido(id) {
     const detallesPedido = document.getElementById('detalles-pedido');
