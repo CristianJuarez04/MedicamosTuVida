@@ -1,4 +1,4 @@
-let moduloCliente, moduloEmpleado, moduloProducto, moduloProductoSuc, moduloVenta, moduloSuc, moduloPedidos;
+let moduloCliente, moduloEmpleado, moduloProducto, moduloProductoSuc, moduloVenta, moduloSuc, moduloPedidos, moduloPedidosSuc;
 
 function cargarScriptCliente() {
     fetch("clientes.html")
@@ -180,7 +180,7 @@ function cargarScriptCompras() {
                 (
                     function(controller)
                     {
-                        moduloPedidos = controller;
+                        moduloPedidosSuc = controller;
                     }
                 );
             }

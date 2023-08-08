@@ -32,11 +32,10 @@ document.querySelector('.mandar').addEventListener('click', function (event) {
   let email = document.querySelector('#email-input').value;
   let puesto = document.querySelector('#puesto-input').value;
   let salario = document.querySelector('#salario-input').value;
-  let codigo = document.querySelector('#codigo-input').value;
   let fechaIngreso = document.querySelector('#fecha-ingreso-input').value;
   let imagen = document.querySelector('#imagen-input').value;
 
-  if (nombre && genero && fechaNacimiento && rfc && curp && calle && colonia && numeroExt && codigoPostal && ciudad && estado && telefono && email && puesto && salario && codigo && fechaIngreso && imagen) {
+  if (nombre && genero && fechaNacimiento && rfc && curp && calle && colonia && numeroExt && codigoPostal && ciudad && estado && telefono && email && puesto && salario && fechaIngreso && imagen) {
     moduloEmpleado.agregarEmpleado();
   } else {
     alert('Por favor, llene todos los campos antes de enviar el formulario.');
@@ -60,7 +59,6 @@ export function agregarEmpleado() {
     emailInput,
     puestoInput,
     salarioInput,
-    codigoInput,
     fechaIngresoInput;
 
   nombreInput = document.getElementById("nombre-input").value;
@@ -78,8 +76,16 @@ export function agregarEmpleado() {
   emailInput = document.getElementById("email-input").value;
   puestoInput = document.getElementById("puesto-input").value;
   salarioInput = document.getElementById("salario-input").value;
-  codigoInput = document.getElementById("codigo-input").value;
   fechaIngresoInput = document.getElementById("fecha-ingreso-input").value;
+ // Obtenemos el codigo de empleado 
+  let fechaIngreso= new Date(fechaIngresoInput);
+  let anio=fechaIngreso.getFullYear().toString().slice(2);
+  let mes=(fechaIngreso.getMonth() +1).toString().padStart(2, '0');
+  let numeroConsecutivo =(empleados.length + 1).toString().padStart(4,'0');
+  let codigoEmpleado= anio + mes + numeroConsecutivo;
+
+
+
 
   let nuevoEmpleado = {}
   nuevoEmpleado.id = empleados.length + 1;
@@ -98,7 +104,7 @@ export function agregarEmpleado() {
   nuevoEmpleado.email = emailInput;
   nuevoEmpleado.puesto = puestoInput;
   nuevoEmpleado.salario = salarioInput;
-  nuevoEmpleado.codigo = codigoInput;
+  nuevoEmpleado.codigo = codigoEmpleado;
   nuevoEmpleado.fechaIngreso = fechaIngresoInput;
   nuevoEmpleado.status = "Activo";
 
@@ -146,7 +152,6 @@ export function clean()
   document.getElementById("email-input").value = "";
   document.getElementById("puesto-input").value = "";
   document.getElementById("salario-input").value = "";
-  document.getElementById("codigo-input").value = "";
   document.getElementById("fecha-ingreso-input").value = "";
 }
 

@@ -31,7 +31,7 @@ body{
     
 }
 .logo{
-    color:blue;
+    color:#003366;
     font-size:25px;
     font-weight: 800;
 }
@@ -92,8 +92,10 @@ body{
 }
 .header-txt p{
     font-size: 18px;
-    color:#333;
+    color:black;
     margin-bottom: 35px;
+    line-height: 1.5;
+    text-align: justify;
     
 }
 .header-img{
@@ -149,8 +151,10 @@ body{
 }
 .nosotros-txt p{
     font-size: 18px;
-    color:#333;
+    color:black;
     margin-bottom: 50px;
+    line-height: 1.5;
+    text-align: justify;
 }
 @media(max-width: 991px) {
     .menu{

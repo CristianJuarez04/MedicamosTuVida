@@ -22,19 +22,20 @@
                 </table>
 
                 <div class="card col-lg-4 col-md-12 col-sm-12">
-                    <form class="form-container">
-                        <h3>Nuevo pedido</h3>
-                        <div id="productos-container">
-                            <div class="producto-row">
-                                <input type="text" class="producto-nombre" placeholder="Nombre del Producto"
-                                    required> <br><br>
-                                <input type="number" class="producto-cantidad" placeholder="Cantidad" required>
-                            </div>
+
+                    <h3>Nuevo pedido</h3>
+                    <div id="productos-container">
+                        <div class="producto-row">
+                            <input type="text" class="producto-nombre" placeholder="Nombre del Producto" required>
+                            <br><br>
+                            <input type="number" class="producto-cantidad" placeholder="Cantidad" required>
                         </div>
-                        <button type="button" class="btn form-control" onclick="agregarProductoRow()">Agregar
-                            Producto</button><br><br>
-                        <input type="submit" value="Concluir Venta" class="btn form-control mandar">
-                    </form>
+                    </div>
+                    <button type="button" class="btn form-control"
+                        onclick="moduloPedidosSuc.agregarProductoRow()">Agregar
+                        Producto</button><br><br>
+                    <input type="submit" value="Concluir Venta" class="btn form-control mandar">
+
                 </div>
             </div>
 
@@ -44,11 +45,10 @@
             <div class="card-body">
                 <br>
 
-                <form id="busqueda-form" onsubmit="buscarPedido(event)">
-                    <input type="text" id="busqueda-input" placeholder="Buscar por ID de pedido"
-                        class="form-control formularios1">
-                    <input type="submit" class="btn enviar" value="Buscar">
-                </form>
+                <input type="text" id="busqueda-input" placeholder="Buscar por ID de pedido"
+                    class="form-control formularios1">
+                <input type="submit" class="btn enviar" value="Buscar" onclick="moduloPedidosSuc.buscarPedido(event)">
+
                 <!-- Elimina el contenedor de edición de pedido -->
                 <div id="detalles-pedido">
                     <!-- La información del pedido seleccionado se mostrará aquí -->
