@@ -29,6 +29,7 @@ function reiniciarFormulario() {
     `;
 }
 
+
 document.querySelector(".form-container").addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -52,12 +53,13 @@ document.querySelector(".form-container").addEventListener("submit", function (e
         idEmpleado: generarIDEmpleado(),
         fecha: fecha.toDateString(),
         hora: hora + ":" + minutos,
-        productos: productos,
-        activo: true // Agregar la propiedad activo al nuevo pedido
+        productos: productos
     };
 
-    pedidos.push(nuevoPedido);
-    agregarDatosTabla(id, nuevoPedido.idSucursal, nuevoPedido.idEmpleado, nuevoPedido.fecha, nuevoPedido.hora, productos, nuevoPedido.activo);
+    pedidos.push(nuevoPedido);  // Agregar el nuevo pedido al arreglo
+
+    agregarDatosTabla(id, nuevoPedido.idSucursal, nuevoPedido.idEmpleado, nuevoPedido.fecha, nuevoPedido.hora, productos);
+
     reiniciarFormulario();
 });
 
@@ -114,15 +116,24 @@ function mostrarDetallesPedido(pedido) {
         <ul>
             ${pedido.productos.map(producto => `<li>${producto.nombre}: ${producto.cantidad}</li>`).join("")}
         </ul>
-        <button class="btn btn-danger" onclick="cambiarEstadoPedido(${pedido.id}, ${pedido.activo})">Cambiar Estado a Inactivo</button>
-        <button class="btn btn-success" onclick="cambiarEstadoPedido(${pedido.id}, ${!pedido.activo})">Cambiar Estado a Activo</button>
+        <button class="btn btn-danger" onclick="cambiarEstadoPedido(${pedido.id})">Cambiar Estado a Inactivo</button>
     `;
 }
 
-function cambiarEstadoPedido(id, activo) {
+function eliminarPedido(id) {
     const pedido = pedidos.find(p => p.id === id);
     if (pedido) {
-        pedido.activo = !activo;
+        pedido.activo = false;
+        const detallesPedidoDiv = document.getElementById("detalles-pedido");
+        detallesPedidoDiv.innerHTML = "";
+        actualizarTablaPedidos();
+    }
+}
+
+function cambiarEstadoPedido(id) {
+    const pedido = pedidos.find(p => p.id === id);
+    if (pedido) {
+        pedido.activo = !pedido.activo; // Cambiar el estado de activo a inactivo y viceversa
         actualizarTablaPedidos();
     }
 }
@@ -138,4 +149,6 @@ function actualizarTablaPedidos() {
     });
 }
 
+
+// Escucha el evento submit del formulario de búsqueda de pedido y llama a la función buscarPedido
 document.getElementById("busqueda-form").addEventListener("submit", buscarPedido);
