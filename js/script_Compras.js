@@ -138,5 +138,4 @@ function actualizarTablaPedidos() {
     });
 }
 
-// Escucha el evento submit del formulario de búsqueda de pedido y llama a la función buscarPedido
 document.getElementById("busqueda-form").addEventListener("submit", buscarPedido);
